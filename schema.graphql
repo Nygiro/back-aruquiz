@@ -1,0 +1,83 @@
+type Query {
+  users: [User!]!
+  user(userId: ID!): User
+  currentUser: User
+  quizzes(filter: String, skip: Int, first: Int): [Quiz!]!
+  quiz(quizId: ID!): Quiz
+}
+
+type Mutation {
+  createQuiz(name: String!, schoolSubjectId: ID!): Quiz
+  signup(email: String!, password: String!, name: String!): AuthPayload
+  login(email: String!, password: String!): AuthPayload
+}
+
+type AuthPayload {
+  token: String
+  user: User
+}
+
+type User {
+  id: ID!
+  email: String
+  name: String!
+  password: String!
+  schoolClass: [SchoolClass!]!
+  quizzes: [Quiz!]!
+}
+
+type SchoolClass {
+  id: ID!
+  name: String!
+  teacher: User
+  students: [Student!]!
+}
+
+type Student {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  schoolClass: SchoolClass
+  marker: Marker
+}
+
+type Marker {
+    id: ID!
+    markerId: Int
+    imageLink: String
+}
+
+type SchoolSubject {
+    id: ID!
+    name: String!
+}
+
+type Quiz {
+  id: ID!
+  name: String!
+  schoolSubject: SchoolSubject
+  createdBy: User
+}
+
+type Question {
+  id: ID!
+  label: String!
+  quiz: Quiz
+}
+
+type Answer {
+  id: ID!
+  label: String!
+  isRight: Boolean!
+  question: Question
+}
+
+type Report {
+    id: ID!
+    schoolClass: SchoolClass
+    student: Student
+    quiz: Quiz
+    question: Question
+    answer: Answer
+    createdAt: String!
+}

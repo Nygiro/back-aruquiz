@@ -1,0 +1,64 @@
+type User {
+  id: ID! @id
+  email: String @unique
+  name: String!
+  password: String!
+  schoolClass: [SchoolClass!]!
+  quizzes: [Quiz!]!
+}
+
+type SchoolClass {
+  id: ID! @id
+  name: String!
+  teacher: User @relation(link: INLINE)
+  students: [Student!]!
+}
+
+type Student {
+  id: ID! @id
+  firstName: String!
+  lastName: String!
+  schoolClass: SchoolClass @relation(link: INLINE)
+  marker: Marker @relation(link: INLINE)
+}
+
+type Marker {
+    id: ID! @id
+    markerId: Int
+    imageLink: String
+}
+
+type SchoolSubject {
+    id: ID! @id
+    name: String!
+}
+
+type Quiz {
+  id: ID! @id
+  name: String!
+  schoolSubject: SchoolSubject @relation(link: INLINE)
+  createdBy: User @relation(link: INLINE)
+}
+
+type Question {
+  id: ID! @id
+  label: String!
+  quiz: Quiz @relation(link: INLINE)
+}
+
+type Answer {
+  id: ID! @id
+  label: String!
+  isRight: Boolean!
+  question: Question @relation(link: INLINE)
+}
+
+type Report {
+    id: ID! @id
+    schoolClass: SchoolClass @relation(link: INLINE)
+    student: Student @relation(link: INLINE)
+    quiz: Quiz @relation(link: INLINE)
+    question: Question @relation(link: INLINE)
+    answer: Answer @relation(link: INLINE)
+    createdAt: DateTime!
+}
