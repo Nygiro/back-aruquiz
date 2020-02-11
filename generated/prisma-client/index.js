@@ -44,6 +44,6 @@ var models = [
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
   typeDefs,
   models,
-  endpoint: `https://back-aruquiz-806c7eb587.herokuapp.com/back-aruquiz/dev`
+  endpoint: `${process.env["PRISMA_API_ENDPOINT"]}`
 });
 exports.prisma = new exports.Prisma();

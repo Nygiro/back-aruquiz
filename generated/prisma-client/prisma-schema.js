@@ -1494,7 +1494,7 @@ type Subscription {
 type User {
   id: ID!
   email: String
-  name: String!
+  userName: String!
   password: String!
   schoolClass(where: SchoolClassWhereInput, orderBy: SchoolClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [SchoolClass!]
   quizzes(where: QuizWhereInput, orderBy: QuizOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Quiz!]
@@ -1509,7 +1509,7 @@ type UserConnection {
 input UserCreateInput {
   id: ID
   email: String
-  name: String!
+  userName: String!
   password: String!
   schoolClass: SchoolClassCreateManyWithoutTeacherInput
   quizzes: QuizCreateManyWithoutCreatedByInput
@@ -1528,7 +1528,7 @@ input UserCreateOneWithoutSchoolClassInput {
 input UserCreateWithoutQuizzesInput {
   id: ID
   email: String
-  name: String!
+  userName: String!
   password: String!
   schoolClass: SchoolClassCreateManyWithoutTeacherInput
 }
@@ -1536,7 +1536,7 @@ input UserCreateWithoutQuizzesInput {
 input UserCreateWithoutSchoolClassInput {
   id: ID
   email: String
-  name: String!
+  userName: String!
   password: String!
   quizzes: QuizCreateManyWithoutCreatedByInput
 }
@@ -1551,8 +1551,8 @@ enum UserOrderByInput {
   id_DESC
   email_ASC
   email_DESC
-  name_ASC
-  name_DESC
+  userName_ASC
+  userName_DESC
   password_ASC
   password_DESC
 }
@@ -1560,7 +1560,7 @@ enum UserOrderByInput {
 type UserPreviousValues {
   id: ID!
   email: String
-  name: String!
+  userName: String!
   password: String!
 }
 
@@ -1584,7 +1584,7 @@ input UserSubscriptionWhereInput {
 
 input UserUpdateInput {
   email: String
-  name: String
+  userName: String
   password: String
   schoolClass: SchoolClassUpdateManyWithoutTeacherInput
   quizzes: QuizUpdateManyWithoutCreatedByInput
@@ -1592,7 +1592,7 @@ input UserUpdateInput {
 
 input UserUpdateManyMutationInput {
   email: String
-  name: String
+  userName: String
   password: String
 }
 
@@ -1616,14 +1616,14 @@ input UserUpdateOneWithoutSchoolClassInput {
 
 input UserUpdateWithoutQuizzesDataInput {
   email: String
-  name: String
+  userName: String
   password: String
   schoolClass: SchoolClassUpdateManyWithoutTeacherInput
 }
 
 input UserUpdateWithoutSchoolClassDataInput {
   email: String
-  name: String
+  userName: String
   password: String
   quizzes: QuizUpdateManyWithoutCreatedByInput
 }
@@ -1667,20 +1667,20 @@ input UserWhereInput {
   email_not_starts_with: String
   email_ends_with: String
   email_not_ends_with: String
-  name: String
-  name_not: String
-  name_in: [String!]
-  name_not_in: [String!]
-  name_lt: String
-  name_lte: String
-  name_gt: String
-  name_gte: String
-  name_contains: String
-  name_not_contains: String
-  name_starts_with: String
-  name_not_starts_with: String
-  name_ends_with: String
-  name_not_ends_with: String
+  userName: String
+  userName_not: String
+  userName_in: [String!]
+  userName_not_in: [String!]
+  userName_lt: String
+  userName_lte: String
+  userName_gt: String
+  userName_gte: String
+  userName_contains: String
+  userName_not_contains: String
+  userName_starts_with: String
+  userName_not_starts_with: String
+  userName_ends_with: String
+  userName_not_ends_with: String
   password: String
   password_not: String
   password_in: [String!]

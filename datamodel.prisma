@@ -1,7 +1,7 @@
 type User {
   id: ID! @id
   email: String @unique
-  name: String!
+  userName: String!
   password: String!
   schoolClass: [SchoolClass!]!
   quizzes: [Quiz!]!

@@ -474,8 +474,8 @@ export type UserOrderByInput =
   | "id_DESC"
   | "email_ASC"
   | "email_DESC"
-  | "name_ASC"
-  | "name_DESC"
+  | "userName_ASC"
+  | "userName_DESC"
   | "password_ASC"
   | "password_DESC";
 
@@ -552,20 +552,20 @@ export interface UserWhereInput {
   email_not_starts_with?: Maybe<String>;
   email_ends_with?: Maybe<String>;
   email_not_ends_with?: Maybe<String>;
-  name?: Maybe<String>;
-  name_not?: Maybe<String>;
-  name_in?: Maybe<String[] | String>;
-  name_not_in?: Maybe<String[] | String>;
-  name_lt?: Maybe<String>;
-  name_lte?: Maybe<String>;
-  name_gt?: Maybe<String>;
-  name_gte?: Maybe<String>;
-  name_contains?: Maybe<String>;
-  name_not_contains?: Maybe<String>;
-  name_starts_with?: Maybe<String>;
-  name_not_starts_with?: Maybe<String>;
-  name_ends_with?: Maybe<String>;
-  name_not_ends_with?: Maybe<String>;
+  userName?: Maybe<String>;
+  userName_not?: Maybe<String>;
+  userName_in?: Maybe<String[] | String>;
+  userName_not_in?: Maybe<String[] | String>;
+  userName_lt?: Maybe<String>;
+  userName_lte?: Maybe<String>;
+  userName_gt?: Maybe<String>;
+  userName_gte?: Maybe<String>;
+  userName_contains?: Maybe<String>;
+  userName_not_contains?: Maybe<String>;
+  userName_starts_with?: Maybe<String>;
+  userName_not_starts_with?: Maybe<String>;
+  userName_ends_with?: Maybe<String>;
+  userName_not_ends_with?: Maybe<String>;
   password?: Maybe<String>;
   password_not?: Maybe<String>;
   password_in?: Maybe<String[] | String>;
@@ -939,7 +939,7 @@ export interface UserCreateOneWithoutQuizzesInput {
 export interface UserCreateWithoutQuizzesInput {
   id?: Maybe<ID_Input>;
   email?: Maybe<String>;
-  name: String;
+  userName: String;
   password: String;
   schoolClass?: Maybe<SchoolClassCreateManyWithoutTeacherInput>;
 }
@@ -1048,7 +1048,7 @@ export interface UserUpdateOneWithoutQuizzesInput {
 
 export interface UserUpdateWithoutQuizzesDataInput {
   email?: Maybe<String>;
-  name?: Maybe<String>;
+  userName?: Maybe<String>;
   password?: Maybe<String>;
   schoolClass?: Maybe<SchoolClassUpdateManyWithoutTeacherInput>;
 }
@@ -1336,7 +1336,7 @@ export interface UserCreateOneWithoutSchoolClassInput {
 export interface UserCreateWithoutSchoolClassInput {
   id?: Maybe<ID_Input>;
   email?: Maybe<String>;
-  name: String;
+  userName: String;
   password: String;
   quizzes?: Maybe<QuizCreateManyWithoutCreatedByInput>;
 }
@@ -1417,7 +1417,7 @@ export interface UserUpdateOneWithoutSchoolClassInput {
 
 export interface UserUpdateWithoutSchoolClassDataInput {
   email?: Maybe<String>;
-  name?: Maybe<String>;
+  userName?: Maybe<String>;
   password?: Maybe<String>;
   quizzes?: Maybe<QuizUpdateManyWithoutCreatedByInput>;
 }
@@ -1606,7 +1606,7 @@ export interface StudentUpdateManyMutationInput {
 export interface UserCreateInput {
   id?: Maybe<ID_Input>;
   email?: Maybe<String>;
-  name: String;
+  userName: String;
   password: String;
   schoolClass?: Maybe<SchoolClassCreateManyWithoutTeacherInput>;
   quizzes?: Maybe<QuizCreateManyWithoutCreatedByInput>;
@@ -1614,7 +1614,7 @@ export interface UserCreateInput {
 
 export interface UserUpdateInput {
   email?: Maybe<String>;
-  name?: Maybe<String>;
+  userName?: Maybe<String>;
   password?: Maybe<String>;
   schoolClass?: Maybe<SchoolClassUpdateManyWithoutTeacherInput>;
   quizzes?: Maybe<QuizUpdateManyWithoutCreatedByInput>;
@@ -1622,7 +1622,7 @@ export interface UserUpdateInput {
 
 export interface UserUpdateManyMutationInput {
   email?: Maybe<String>;
-  name?: Maybe<String>;
+  userName?: Maybe<String>;
   password?: Maybe<String>;
 }
 
@@ -1862,14 +1862,14 @@ export interface SchoolSubjectNullablePromise
 export interface User {
   id: ID_Output;
   email?: String;
-  name: String;
+  userName: String;
   password: String;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
   email: () => Promise<String>;
-  name: () => Promise<String>;
+  userName: () => Promise<String>;
   password: () => Promise<String>;
   schoolClass: <T = FragmentableArray<SchoolClass>>(args?: {
     where?: SchoolClassWhereInput;
@@ -1896,7 +1896,7 @@ export interface UserSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   email: () => Promise<AsyncIterator<String>>;
-  name: () => Promise<AsyncIterator<String>>;
+  userName: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   schoolClass: <T = Promise<AsyncIterator<SchoolClassSubscription>>>(args?: {
     where?: SchoolClassWhereInput;
@@ -1923,7 +1923,7 @@ export interface UserNullablePromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   email: () => Promise<String>;
-  name: () => Promise<String>;
+  userName: () => Promise<String>;
   password: () => Promise<String>;
   schoolClass: <T = FragmentableArray<SchoolClass>>(args?: {
     where?: SchoolClassWhereInput;
@@ -3020,7 +3020,7 @@ export interface UserSubscriptionPayloadSubscription
 export interface UserPreviousValues {
   id: ID_Output;
   email?: String;
-  name: String;
+  userName: String;
   password: String;
 }
 
@@ -3029,7 +3029,7 @@ export interface UserPreviousValuesPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   email: () => Promise<String>;
-  name: () => Promise<String>;
+  userName: () => Promise<String>;
   password: () => Promise<String>;
 }
 
@@ -3038,7 +3038,7 @@ export interface UserPreviousValuesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   email: () => Promise<AsyncIterator<String>>;
-  name: () => Promise<AsyncIterator<String>>;
+  userName: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
 }
 
