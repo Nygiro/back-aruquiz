@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { prisma } = require('./generated/prisma-client')
 const { GraphQLServer } = require('graphql-yoga')
 const Mutation = require('./resolvers/Mutation')
