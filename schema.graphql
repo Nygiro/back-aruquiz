@@ -3,7 +3,7 @@ type Query {
   user(userId: ID!): User
   currentUser: User
   quizzes(filter: String, skip: Int, first: Int): [Quiz!]!
-  quizzesBySchoolClass(filter: [String!]!, forCurentUser: Boolean!): [Quiz!]!
+  quizzesBySchoolClass(filter: [String!]!, forCurentUser: Boolean = false): [Quiz!]!
   quiz(quizId: ID!): Quiz
 }
 
