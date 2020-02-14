@@ -19,16 +19,32 @@ const quizzes = async (root, args, context) => {
 }
 
 
-const quizzesBySchoolClass = async (root, arg, context) => {
-    const where = args.filter ? {
-        where: { schoolSubject: { name_contains: args.filter } },
-    } : {}
+const quizzesBySchoolClass = async (root, args, context) => {
+    let where = {};
+    if (args.filter) {
+        where = {
+            ...where,
+            schoolSubject: {
+                name_in: args.filter
+            }
+        }
+    }
+    if (args.userId) {
+        where = {
+            ...where,
+            user: {
+                id: getUserId(context)
+            }
+        }
+    }
+
     return await context.prisma.quizzes({
         where,
         skip: args.skip,
         first: args.first
     })
 }
+
 const quiz = async (root, args, context) => await context.prisma.quiz({ id: args.quizId });
 
 
