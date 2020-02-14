@@ -3,6 +3,7 @@ type Query {
   user(userId: ID!): User
   currentUser: User
   quizzes(filter: String, skip: Int, first: Int): [Quiz!]!
+  quizzesBySchoolClass(filter: [String!]): [Quiz!]!
   quiz(quizId: ID!): Quiz
 }
 

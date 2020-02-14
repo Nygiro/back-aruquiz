@@ -1,14 +1,13 @@
-const {getUserId} = require('../utils')
+const { getUserId } = require('../utils')
 
 const users = async (root, args, context) => await context.prisma.users();
-const user = async (root, args, context) => await context.prisma.user({id: args.userId});
-const currentUser = async (root, args, context) => await context.prisma.user({id: getUserId(context)});
+const user = async (root, args, context) => await context.prisma.user({ id: args.userId });
+const currentUser = async (root, args, context) => await context.prisma.user({ id: getUserId(context) });
 
 const quizzes = async (root, args, context) => {
     const where = args.filter ? {
         OR: [
-            {name_contains: args.filter},
-            // {schoolSubject_contains: args.filter},
+            { name_contains: args.filter },
         ],
     } : {}
 
@@ -19,7 +18,18 @@ const quizzes = async (root, args, context) => {
     })
 }
 
-const quiz = async (root, args, context) => await context.prisma.quiz({id: args.quizId});
+
+const quizzesBySchoolClass = async (root, arg, context) => {
+    const where = args.filter ? {
+        where: { schoolSubject: { name_contains: args.filter } },
+    } : {}
+    return await context.prisma.quizzes({
+        where,
+        skip: args.skip,
+        first: args.first
+    })
+}
+const quiz = async (root, args, context) => await context.prisma.quiz({ id: args.quizId });
 
 
 module.exports = {
@@ -27,5 +37,6 @@ module.exports = {
     user,
     currentUser,
     quizzes,
+    quizzesBySchoolClass,
     quiz,
 }
