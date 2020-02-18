@@ -29,12 +29,19 @@ const quizzesBySchoolClass = async (root, args, context) => {
             }
         }
     }
-    if (args.userId) {
+    if (args.forCurrentUser) {
         where = {
             ...where,
-            user: {
+            createdBy: {
                 id: getUserId(context)
             }
+        }
+    }
+
+    if (args.search !== '') {
+        where = {
+            ...where,
+            name_contains: args.search
         }
     }
 
@@ -47,7 +54,8 @@ const quizzesBySchoolClass = async (root, args, context) => {
 
 const quiz = async (root, args, context) => await context.prisma.quiz({ id: args.quizId });
 
-
+const schoolSubjects = async (root, args, context) => await context.prisma.schoolSubjects();
+ 
 module.exports = {
     users,
     user,
@@ -55,4 +63,5 @@ module.exports = {
     quizzes,
     quizzesBySchoolClass,
     quiz,
+    schoolSubjects
 }

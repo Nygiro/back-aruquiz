@@ -3,8 +3,9 @@ type Query {
   user(userId: ID!): User
   currentUser: User
   quizzes(filter: String, skip: Int, first: Int): [Quiz!]!
-  quizzesBySchoolClass(filter: [String!]!, forCurentUser: Boolean = false): [Quiz!]!
+  quizzesBySchoolClass(filter: [String!]!, search: String = "", forCurrentUser: Boolean = false): [Quiz!]!
   quiz(quizId: ID!): Quiz
+  schoolSubjects: [SchoolSubject!]!
 }
 
 type Mutation {
