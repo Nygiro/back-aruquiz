@@ -880,7 +880,7 @@ type SchoolClassConnection {
 input SchoolClassCreateInput {
   id: ID
   name: String!
-  teacher: UserCreateOneWithoutSchoolClassInput
+  teacher: UserCreateOneWithoutSchoolClassesInput
   students: StudentCreateManyWithoutSchoolClassInput
 }
 
@@ -902,7 +902,7 @@ input SchoolClassCreateOneWithoutStudentsInput {
 input SchoolClassCreateWithoutStudentsInput {
   id: ID
   name: String!
-  teacher: UserCreateOneWithoutSchoolClassInput
+  teacher: UserCreateOneWithoutSchoolClassesInput
 }
 
 input SchoolClassCreateWithoutTeacherInput {
@@ -982,13 +982,13 @@ input SchoolClassSubscriptionWhereInput {
 
 input SchoolClassUpdateDataInput {
   name: String
-  teacher: UserUpdateOneWithoutSchoolClassInput
+  teacher: UserUpdateOneWithoutSchoolClassesInput
   students: StudentUpdateManyWithoutSchoolClassInput
 }
 
 input SchoolClassUpdateInput {
   name: String
-  teacher: UserUpdateOneWithoutSchoolClassInput
+  teacher: UserUpdateOneWithoutSchoolClassesInput
   students: StudentUpdateManyWithoutSchoolClassInput
 }
 
@@ -1037,7 +1037,7 @@ input SchoolClassUpdateOneWithoutStudentsInput {
 
 input SchoolClassUpdateWithoutStudentsDataInput {
   name: String
-  teacher: UserUpdateOneWithoutSchoolClassInput
+  teacher: UserUpdateOneWithoutSchoolClassesInput
 }
 
 input SchoolClassUpdateWithoutTeacherDataInput {
@@ -1496,7 +1496,7 @@ type User {
   email: String
   userName: String!
   password: String!
-  schoolClass(where: SchoolClassWhereInput, orderBy: SchoolClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [SchoolClass!]
+  schoolClasses(where: SchoolClassWhereInput, orderBy: SchoolClassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [SchoolClass!]
   quizzes(where: QuizWhereInput, orderBy: QuizOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Quiz!]
 }
 
@@ -1511,7 +1511,7 @@ input UserCreateInput {
   email: String
   userName: String!
   password: String!
-  schoolClass: SchoolClassCreateManyWithoutTeacherInput
+  schoolClasses: SchoolClassCreateManyWithoutTeacherInput
   quizzes: QuizCreateManyWithoutCreatedByInput
 }
 
@@ -1520,8 +1520,8 @@ input UserCreateOneWithoutQuizzesInput {
   connect: UserWhereUniqueInput
 }
 
-input UserCreateOneWithoutSchoolClassInput {
-  create: UserCreateWithoutSchoolClassInput
+input UserCreateOneWithoutSchoolClassesInput {
+  create: UserCreateWithoutSchoolClassesInput
   connect: UserWhereUniqueInput
 }
 
@@ -1530,10 +1530,10 @@ input UserCreateWithoutQuizzesInput {
   email: String
   userName: String!
   password: String!
-  schoolClass: SchoolClassCreateManyWithoutTeacherInput
+  schoolClasses: SchoolClassCreateManyWithoutTeacherInput
 }
 
-input UserCreateWithoutSchoolClassInput {
+input UserCreateWithoutSchoolClassesInput {
   id: ID
   email: String
   userName: String!
@@ -1586,7 +1586,7 @@ input UserUpdateInput {
   email: String
   userName: String
   password: String
-  schoolClass: SchoolClassUpdateManyWithoutTeacherInput
+  schoolClasses: SchoolClassUpdateManyWithoutTeacherInput
   quizzes: QuizUpdateManyWithoutCreatedByInput
 }
 
@@ -1605,10 +1605,10 @@ input UserUpdateOneWithoutQuizzesInput {
   connect: UserWhereUniqueInput
 }
 
-input UserUpdateOneWithoutSchoolClassInput {
-  create: UserCreateWithoutSchoolClassInput
-  update: UserUpdateWithoutSchoolClassDataInput
-  upsert: UserUpsertWithoutSchoolClassInput
+input UserUpdateOneWithoutSchoolClassesInput {
+  create: UserCreateWithoutSchoolClassesInput
+  update: UserUpdateWithoutSchoolClassesDataInput
+  upsert: UserUpsertWithoutSchoolClassesInput
   delete: Boolean
   disconnect: Boolean
   connect: UserWhereUniqueInput
@@ -1618,10 +1618,10 @@ input UserUpdateWithoutQuizzesDataInput {
   email: String
   userName: String
   password: String
-  schoolClass: SchoolClassUpdateManyWithoutTeacherInput
+  schoolClasses: SchoolClassUpdateManyWithoutTeacherInput
 }
 
-input UserUpdateWithoutSchoolClassDataInput {
+input UserUpdateWithoutSchoolClassesDataInput {
   email: String
   userName: String
   password: String
@@ -1633,9 +1633,9 @@ input UserUpsertWithoutQuizzesInput {
   create: UserCreateWithoutQuizzesInput!
 }
 
-input UserUpsertWithoutSchoolClassInput {
-  update: UserUpdateWithoutSchoolClassDataInput!
-  create: UserCreateWithoutSchoolClassInput!
+input UserUpsertWithoutSchoolClassesInput {
+  update: UserUpdateWithoutSchoolClassesDataInput!
+  create: UserCreateWithoutSchoolClassesInput!
 }
 
 input UserWhereInput {
@@ -1695,9 +1695,9 @@ input UserWhereInput {
   password_not_starts_with: String
   password_ends_with: String
   password_not_ends_with: String
-  schoolClass_every: SchoolClassWhereInput
-  schoolClass_some: SchoolClassWhereInput
-  schoolClass_none: SchoolClassWhereInput
+  schoolClasses_every: SchoolClassWhereInput
+  schoolClasses_some: SchoolClassWhereInput
+  schoolClasses_none: SchoolClassWhereInput
   quizzes_every: QuizWhereInput
   quizzes_some: QuizWhereInput
   quizzes_none: QuizWhereInput

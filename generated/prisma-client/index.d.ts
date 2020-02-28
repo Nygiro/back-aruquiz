@@ -580,9 +580,9 @@ export interface UserWhereInput {
   password_not_starts_with?: Maybe<String>;
   password_ends_with?: Maybe<String>;
   password_not_ends_with?: Maybe<String>;
-  schoolClass_every?: Maybe<SchoolClassWhereInput>;
-  schoolClass_some?: Maybe<SchoolClassWhereInput>;
-  schoolClass_none?: Maybe<SchoolClassWhereInput>;
+  schoolClasses_every?: Maybe<SchoolClassWhereInput>;
+  schoolClasses_some?: Maybe<SchoolClassWhereInput>;
+  schoolClasses_none?: Maybe<SchoolClassWhereInput>;
   quizzes_every?: Maybe<QuizWhereInput>;
   quizzes_some?: Maybe<QuizWhereInput>;
   quizzes_none?: Maybe<QuizWhereInput>;
@@ -941,7 +941,7 @@ export interface UserCreateWithoutQuizzesInput {
   email?: Maybe<String>;
   userName: String;
   password: String;
-  schoolClass?: Maybe<SchoolClassCreateManyWithoutTeacherInput>;
+  schoolClasses?: Maybe<SchoolClassCreateManyWithoutTeacherInput>;
 }
 
 export interface SchoolClassCreateManyWithoutTeacherInput {
@@ -1050,7 +1050,7 @@ export interface UserUpdateWithoutQuizzesDataInput {
   email?: Maybe<String>;
   userName?: Maybe<String>;
   password?: Maybe<String>;
-  schoolClass?: Maybe<SchoolClassUpdateManyWithoutTeacherInput>;
+  schoolClasses?: Maybe<SchoolClassUpdateManyWithoutTeacherInput>;
 }
 
 export interface SchoolClassUpdateManyWithoutTeacherInput {
@@ -1324,16 +1324,16 @@ export interface SchoolClassCreateOneInput {
 export interface SchoolClassCreateInput {
   id?: Maybe<ID_Input>;
   name: String;
-  teacher?: Maybe<UserCreateOneWithoutSchoolClassInput>;
+  teacher?: Maybe<UserCreateOneWithoutSchoolClassesInput>;
   students?: Maybe<StudentCreateManyWithoutSchoolClassInput>;
 }
 
-export interface UserCreateOneWithoutSchoolClassInput {
-  create?: Maybe<UserCreateWithoutSchoolClassInput>;
+export interface UserCreateOneWithoutSchoolClassesInput {
+  create?: Maybe<UserCreateWithoutSchoolClassesInput>;
   connect?: Maybe<UserWhereUniqueInput>;
 }
 
-export interface UserCreateWithoutSchoolClassInput {
+export interface UserCreateWithoutSchoolClassesInput {
   id?: Maybe<ID_Input>;
   email?: Maybe<String>;
   userName: String;
@@ -1375,7 +1375,7 @@ export interface SchoolClassCreateOneWithoutStudentsInput {
 export interface SchoolClassCreateWithoutStudentsInput {
   id?: Maybe<ID_Input>;
   name: String;
-  teacher?: Maybe<UserCreateOneWithoutSchoolClassInput>;
+  teacher?: Maybe<UserCreateOneWithoutSchoolClassesInput>;
 }
 
 export interface AnswerCreateOneInput {
@@ -1402,20 +1402,20 @@ export interface SchoolClassUpdateOneInput {
 
 export interface SchoolClassUpdateDataInput {
   name?: Maybe<String>;
-  teacher?: Maybe<UserUpdateOneWithoutSchoolClassInput>;
+  teacher?: Maybe<UserUpdateOneWithoutSchoolClassesInput>;
   students?: Maybe<StudentUpdateManyWithoutSchoolClassInput>;
 }
 
-export interface UserUpdateOneWithoutSchoolClassInput {
-  create?: Maybe<UserCreateWithoutSchoolClassInput>;
-  update?: Maybe<UserUpdateWithoutSchoolClassDataInput>;
-  upsert?: Maybe<UserUpsertWithoutSchoolClassInput>;
+export interface UserUpdateOneWithoutSchoolClassesInput {
+  create?: Maybe<UserCreateWithoutSchoolClassesInput>;
+  update?: Maybe<UserUpdateWithoutSchoolClassesDataInput>;
+  upsert?: Maybe<UserUpsertWithoutSchoolClassesInput>;
   delete?: Maybe<Boolean>;
   disconnect?: Maybe<Boolean>;
   connect?: Maybe<UserWhereUniqueInput>;
 }
 
-export interface UserUpdateWithoutSchoolClassDataInput {
+export interface UserUpdateWithoutSchoolClassesDataInput {
   email?: Maybe<String>;
   userName?: Maybe<String>;
   password?: Maybe<String>;
@@ -1503,9 +1503,9 @@ export interface QuizUpdateManyDataInput {
   name?: Maybe<String>;
 }
 
-export interface UserUpsertWithoutSchoolClassInput {
-  update: UserUpdateWithoutSchoolClassDataInput;
-  create: UserCreateWithoutSchoolClassInput;
+export interface UserUpsertWithoutSchoolClassesInput {
+  update: UserUpdateWithoutSchoolClassesDataInput;
+  create: UserCreateWithoutSchoolClassesInput;
 }
 
 export interface SchoolClassUpsertNestedInput {
@@ -1540,7 +1540,7 @@ export interface SchoolClassUpdateOneWithoutStudentsInput {
 
 export interface SchoolClassUpdateWithoutStudentsDataInput {
   name?: Maybe<String>;
-  teacher?: Maybe<UserUpdateOneWithoutSchoolClassInput>;
+  teacher?: Maybe<UserUpdateOneWithoutSchoolClassesInput>;
 }
 
 export interface SchoolClassUpsertWithoutStudentsInput {
@@ -1575,7 +1575,7 @@ export interface AnswerUpsertNestedInput {
 
 export interface SchoolClassUpdateInput {
   name?: Maybe<String>;
-  teacher?: Maybe<UserUpdateOneWithoutSchoolClassInput>;
+  teacher?: Maybe<UserUpdateOneWithoutSchoolClassesInput>;
   students?: Maybe<StudentUpdateManyWithoutSchoolClassInput>;
 }
 
@@ -1608,7 +1608,7 @@ export interface UserCreateInput {
   email?: Maybe<String>;
   userName: String;
   password: String;
-  schoolClass?: Maybe<SchoolClassCreateManyWithoutTeacherInput>;
+  schoolClasses?: Maybe<SchoolClassCreateManyWithoutTeacherInput>;
   quizzes?: Maybe<QuizCreateManyWithoutCreatedByInput>;
 }
 
@@ -1616,7 +1616,7 @@ export interface UserUpdateInput {
   email?: Maybe<String>;
   userName?: Maybe<String>;
   password?: Maybe<String>;
-  schoolClass?: Maybe<SchoolClassUpdateManyWithoutTeacherInput>;
+  schoolClasses?: Maybe<SchoolClassUpdateManyWithoutTeacherInput>;
   quizzes?: Maybe<QuizUpdateManyWithoutCreatedByInput>;
 }
 
@@ -1871,7 +1871,7 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   email: () => Promise<String>;
   userName: () => Promise<String>;
   password: () => Promise<String>;
-  schoolClass: <T = FragmentableArray<SchoolClass>>(args?: {
+  schoolClasses: <T = FragmentableArray<SchoolClass>>(args?: {
     where?: SchoolClassWhereInput;
     orderBy?: SchoolClassOrderByInput;
     skip?: Int;
@@ -1898,7 +1898,7 @@ export interface UserSubscription
   email: () => Promise<AsyncIterator<String>>;
   userName: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
-  schoolClass: <T = Promise<AsyncIterator<SchoolClassSubscription>>>(args?: {
+  schoolClasses: <T = Promise<AsyncIterator<SchoolClassSubscription>>>(args?: {
     where?: SchoolClassWhereInput;
     orderBy?: SchoolClassOrderByInput;
     skip?: Int;
@@ -1925,7 +1925,7 @@ export interface UserNullablePromise
   email: () => Promise<String>;
   userName: () => Promise<String>;
   password: () => Promise<String>;
-  schoolClass: <T = FragmentableArray<SchoolClass>>(args?: {
+  schoolClasses: <T = FragmentableArray<SchoolClass>>(args?: {
     where?: SchoolClassWhereInput;
     orderBy?: SchoolClassOrderByInput;
     skip?: Int;
