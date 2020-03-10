@@ -55,7 +55,10 @@ const quizzesBySchoolClass = async (root, args, context) => {
 const quiz = async (root, args, context) => await context.prisma.quiz({ id: args.quizId });
 
 const schoolSubjects = async (root, args, context) => await context.prisma.schoolSubjects();
- 
+
+const schoolClass = async (root, args, context) => await context.prisma.schoolClass({ id: args.schoolClassId });
+
+
 module.exports = {
     users,
     user,
@@ -63,5 +66,6 @@ module.exports = {
     quizzes,
     quizzesBySchoolClass,
     quiz,
-    schoolSubjects
+    schoolSubjects,
+    schoolClass
 }

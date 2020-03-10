@@ -6,6 +6,7 @@ type Query {
   quizzesBySchoolClass(filter: [String!]!, search: String = "", forCurrentUser: Boolean = false): [Quiz!]!
   quiz(quizId: ID!): Quiz
   schoolSubjects: [SchoolSubject!]!
+  schoolClass(schoolClassId: ID!): SchoolClass!
 }
 
 type Mutation {
