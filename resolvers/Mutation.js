@@ -40,9 +40,60 @@ const createQuiz = async (parent, args, context, info) => {
   })
 }
 
+const createSchoolClass = async (parent, args, context, info) => {
+  const userId = getUserId(context)
+  return context.prisma.createSchoolClass({
+    name: args.name,
+    teacher: {
+      connect: { id: userId },
+    }
+  })
+}
+
+const deleteSchoolClass = async (parent, args, context, info) => {
+  return context.prisma.deleteSchoolClass({
+    id:  args.schoolClassId
+  })
+};
+
+
+const createStudent = async (parent, args, context, info) => {
+  const userId = getUserId(context)
+  return context.prisma.createStudent({
+    name: args.name,
+    schoolClass: {
+      connect: { id: args.schoolClassId },
+    },
+  })
+}
+
+const updateStudent = async (parent, args, context, info) => {
+  return context.prisma.updateStudent({
+    data: {
+      name: args.name,
+    },
+    where: {
+      id: args.studentId
+    }
+  })
+};
+
+const deleteStudent = async (parent, args, context, info) => {
+  return context.prisma.deleteStudent({
+    id:  args.studentId
+  })
+};
+
+
+
 
 module.exports = {
   signup,
   login,
-  createQuiz
+  createQuiz,
+  createSchoolClass,
+  deleteSchoolClass,
+  createStudent,
+  updateStudent,
+  deleteStudent,
 }

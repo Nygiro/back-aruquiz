@@ -58,6 +58,25 @@ const schoolSubjects = async (root, args, context) => await context.prisma.schoo
 
 const schoolClass = async (root, args, context) => await context.prisma.schoolClass({ id: args.schoolClassId });
 
+const schoolClassesByCurrentUser = async (root, args, context) => {
+    let where = {
+        teacher: {
+            id: getUserId(context)
+        }
+    }
+    if (args.search !== '') {
+        where = {
+            ...where,
+            name_contains: args.search
+        }
+    }
+
+    return await context.prisma.schoolClasses({
+        where,
+        skip: args.skip,
+        first: args.first
+    })
+}
 
 module.exports = {
     users,
@@ -67,5 +86,6 @@ module.exports = {
     quizzesBySchoolClass,
     quiz,
     schoolSubjects,
-    schoolClass
+    schoolClass,
+    schoolClassesByCurrentUser
 }

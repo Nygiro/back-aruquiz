@@ -6,13 +6,19 @@ type Query {
   quizzesBySchoolClass(filter: [String!]!, search: String = "", forCurrentUser: Boolean = false): [Quiz!]!
   quiz(quizId: ID!): Quiz
   schoolSubjects: [SchoolSubject!]!
-  schoolClass(schoolClassId: ID!): SchoolClass!
+  schoolClass(schoolClassId: ID!): SchoolClass!,
+  schoolClassesByCurrentUser(search: String = ""): [SchoolClass!]!
 }
 
 type Mutation {
   createQuiz(name: String!, schoolSubjectId: ID!): Quiz
+  createSchoolClass(name: String!): SchoolClass
+  createStudent(name: String!, schoolClassId: ID!): Student
   signup(email: String!, password: String!, userName: String!): AuthPayload
-  login(email: String!, password: String!): AuthPayload
+  login(email: String!, password: String!): AuthPayload,
+  updateStudent(name: String!, studentId: ID!): Student
+  deleteStudent(studentId: ID!): Student
+  deleteSchoolClass(schoolClassId: ID!): SchoolClass
 }
 
 type AuthPayload {
@@ -38,8 +44,7 @@ type SchoolClass {
 
 type Student {
   id: ID!
-  firstName: String!
-  lastName: String!
+  name: String!
   schoolClass: SchoolClass
   marker: Marker
 }

@@ -1230,8 +1230,7 @@ input SchoolSubjectWhereUniqueInput {
 
 type Student {
   id: ID!
-  firstName: String!
-  lastName: String!
+  name: String!
   schoolClass: SchoolClass
   marker: Marker
 }
@@ -1244,8 +1243,7 @@ type StudentConnection {
 
 input StudentCreateInput {
   id: ID
-  firstName: String!
-  lastName: String!
+  name: String!
   schoolClass: SchoolClassCreateOneWithoutStudentsInput
   marker: MarkerCreateOneInput
 }
@@ -1262,8 +1260,7 @@ input StudentCreateOneInput {
 
 input StudentCreateWithoutSchoolClassInput {
   id: ID
-  firstName: String!
-  lastName: String!
+  name: String!
   marker: MarkerCreateOneInput
 }
 
@@ -1275,16 +1272,13 @@ type StudentEdge {
 enum StudentOrderByInput {
   id_ASC
   id_DESC
-  firstName_ASC
-  firstName_DESC
-  lastName_ASC
-  lastName_DESC
+  name_ASC
+  name_DESC
 }
 
 type StudentPreviousValues {
   id: ID!
-  firstName: String!
-  lastName: String!
+  name: String!
 }
 
 input StudentScalarWhereInput {
@@ -1302,34 +1296,20 @@ input StudentScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  firstName: String
-  firstName_not: String
-  firstName_in: [String!]
-  firstName_not_in: [String!]
-  firstName_lt: String
-  firstName_lte: String
-  firstName_gt: String
-  firstName_gte: String
-  firstName_contains: String
-  firstName_not_contains: String
-  firstName_starts_with: String
-  firstName_not_starts_with: String
-  firstName_ends_with: String
-  firstName_not_ends_with: String
-  lastName: String
-  lastName_not: String
-  lastName_in: [String!]
-  lastName_not_in: [String!]
-  lastName_lt: String
-  lastName_lte: String
-  lastName_gt: String
-  lastName_gte: String
-  lastName_contains: String
-  lastName_not_contains: String
-  lastName_starts_with: String
-  lastName_not_starts_with: String
-  lastName_ends_with: String
-  lastName_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
   AND: [StudentScalarWhereInput!]
   OR: [StudentScalarWhereInput!]
   NOT: [StudentScalarWhereInput!]
@@ -1354,27 +1334,23 @@ input StudentSubscriptionWhereInput {
 }
 
 input StudentUpdateDataInput {
-  firstName: String
-  lastName: String
+  name: String
   schoolClass: SchoolClassUpdateOneWithoutStudentsInput
   marker: MarkerUpdateOneInput
 }
 
 input StudentUpdateInput {
-  firstName: String
-  lastName: String
+  name: String
   schoolClass: SchoolClassUpdateOneWithoutStudentsInput
   marker: MarkerUpdateOneInput
 }
 
 input StudentUpdateManyDataInput {
-  firstName: String
-  lastName: String
+  name: String
 }
 
 input StudentUpdateManyMutationInput {
-  firstName: String
-  lastName: String
+  name: String
 }
 
 input StudentUpdateManyWithoutSchoolClassInput {
@@ -1404,8 +1380,7 @@ input StudentUpdateOneInput {
 }
 
 input StudentUpdateWithoutSchoolClassDataInput {
-  firstName: String
-  lastName: String
+  name: String
   marker: MarkerUpdateOneInput
 }
 
@@ -1440,34 +1415,20 @@ input StudentWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  firstName: String
-  firstName_not: String
-  firstName_in: [String!]
-  firstName_not_in: [String!]
-  firstName_lt: String
-  firstName_lte: String
-  firstName_gt: String
-  firstName_gte: String
-  firstName_contains: String
-  firstName_not_contains: String
-  firstName_starts_with: String
-  firstName_not_starts_with: String
-  firstName_ends_with: String
-  firstName_not_ends_with: String
-  lastName: String
-  lastName_not: String
-  lastName_in: [String!]
-  lastName_not_in: [String!]
-  lastName_lt: String
-  lastName_lte: String
-  lastName_gt: String
-  lastName_gte: String
-  lastName_contains: String
-  lastName_not_contains: String
-  lastName_starts_with: String
-  lastName_not_starts_with: String
-  lastName_ends_with: String
-  lastName_not_ends_with: String
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
   schoolClass: SchoolClassWhereInput
   marker: MarkerWhereInput
   AND: [StudentWhereInput!]

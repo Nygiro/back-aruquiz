@@ -428,10 +428,8 @@ export type SchoolClassOrderByInput =
 export type StudentOrderByInput =
   | "id_ASC"
   | "id_DESC"
-  | "firstName_ASC"
-  | "firstName_DESC"
-  | "lastName_ASC"
-  | "lastName_DESC";
+  | "name_ASC"
+  | "name_DESC";
 
 export type QuizOrderByInput = "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC";
 
@@ -676,34 +674,20 @@ export interface StudentWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  firstName?: Maybe<String>;
-  firstName_not?: Maybe<String>;
-  firstName_in?: Maybe<String[] | String>;
-  firstName_not_in?: Maybe<String[] | String>;
-  firstName_lt?: Maybe<String>;
-  firstName_lte?: Maybe<String>;
-  firstName_gt?: Maybe<String>;
-  firstName_gte?: Maybe<String>;
-  firstName_contains?: Maybe<String>;
-  firstName_not_contains?: Maybe<String>;
-  firstName_starts_with?: Maybe<String>;
-  firstName_not_starts_with?: Maybe<String>;
-  firstName_ends_with?: Maybe<String>;
-  firstName_not_ends_with?: Maybe<String>;
-  lastName?: Maybe<String>;
-  lastName_not?: Maybe<String>;
-  lastName_in?: Maybe<String[] | String>;
-  lastName_not_in?: Maybe<String[] | String>;
-  lastName_lt?: Maybe<String>;
-  lastName_lte?: Maybe<String>;
-  lastName_gt?: Maybe<String>;
-  lastName_gte?: Maybe<String>;
-  lastName_contains?: Maybe<String>;
-  lastName_not_contains?: Maybe<String>;
-  lastName_starts_with?: Maybe<String>;
-  lastName_not_starts_with?: Maybe<String>;
-  lastName_ends_with?: Maybe<String>;
-  lastName_not_ends_with?: Maybe<String>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
   schoolClass?: Maybe<SchoolClassWhereInput>;
   marker?: Maybe<MarkerWhereInput>;
   AND?: Maybe<StudentWhereInput[] | StudentWhereInput>;
@@ -968,8 +952,7 @@ export interface StudentCreateManyWithoutSchoolClassInput {
 
 export interface StudentCreateWithoutSchoolClassInput {
   id?: Maybe<ID_Input>;
-  firstName: String;
-  lastName: String;
+  name: String;
   marker?: Maybe<MarkerCreateOneInput>;
 }
 
@@ -1121,8 +1104,7 @@ export interface StudentUpdateWithWhereUniqueWithoutSchoolClassInput {
 }
 
 export interface StudentUpdateWithoutSchoolClassDataInput {
-  firstName?: Maybe<String>;
-  lastName?: Maybe<String>;
+  name?: Maybe<String>;
   marker?: Maybe<MarkerUpdateOneInput>;
 }
 
@@ -1166,34 +1148,20 @@ export interface StudentScalarWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  firstName?: Maybe<String>;
-  firstName_not?: Maybe<String>;
-  firstName_in?: Maybe<String[] | String>;
-  firstName_not_in?: Maybe<String[] | String>;
-  firstName_lt?: Maybe<String>;
-  firstName_lte?: Maybe<String>;
-  firstName_gt?: Maybe<String>;
-  firstName_gte?: Maybe<String>;
-  firstName_contains?: Maybe<String>;
-  firstName_not_contains?: Maybe<String>;
-  firstName_starts_with?: Maybe<String>;
-  firstName_not_starts_with?: Maybe<String>;
-  firstName_ends_with?: Maybe<String>;
-  firstName_not_ends_with?: Maybe<String>;
-  lastName?: Maybe<String>;
-  lastName_not?: Maybe<String>;
-  lastName_in?: Maybe<String[] | String>;
-  lastName_not_in?: Maybe<String[] | String>;
-  lastName_lt?: Maybe<String>;
-  lastName_lte?: Maybe<String>;
-  lastName_gt?: Maybe<String>;
-  lastName_gte?: Maybe<String>;
-  lastName_contains?: Maybe<String>;
-  lastName_not_contains?: Maybe<String>;
-  lastName_starts_with?: Maybe<String>;
-  lastName_not_starts_with?: Maybe<String>;
-  lastName_ends_with?: Maybe<String>;
-  lastName_not_ends_with?: Maybe<String>;
+  name?: Maybe<String>;
+  name_not?: Maybe<String>;
+  name_in?: Maybe<String[] | String>;
+  name_not_in?: Maybe<String[] | String>;
+  name_lt?: Maybe<String>;
+  name_lte?: Maybe<String>;
+  name_gt?: Maybe<String>;
+  name_gte?: Maybe<String>;
+  name_contains?: Maybe<String>;
+  name_not_contains?: Maybe<String>;
+  name_starts_with?: Maybe<String>;
+  name_not_starts_with?: Maybe<String>;
+  name_ends_with?: Maybe<String>;
+  name_not_ends_with?: Maybe<String>;
   AND?: Maybe<StudentScalarWhereInput[] | StudentScalarWhereInput>;
   OR?: Maybe<StudentScalarWhereInput[] | StudentScalarWhereInput>;
   NOT?: Maybe<StudentScalarWhereInput[] | StudentScalarWhereInput>;
@@ -1205,8 +1173,7 @@ export interface StudentUpdateManyWithWhereNestedInput {
 }
 
 export interface StudentUpdateManyDataInput {
-  firstName?: Maybe<String>;
-  lastName?: Maybe<String>;
+  name?: Maybe<String>;
 }
 
 export interface SchoolClassUpsertWithWhereUniqueWithoutTeacherInput {
@@ -1361,8 +1328,7 @@ export interface StudentCreateOneInput {
 
 export interface StudentCreateInput {
   id?: Maybe<ID_Input>;
-  firstName: String;
-  lastName: String;
+  name: String;
   schoolClass?: Maybe<SchoolClassCreateOneWithoutStudentsInput>;
   marker?: Maybe<MarkerCreateOneInput>;
 }
@@ -1523,8 +1489,7 @@ export interface StudentUpdateOneInput {
 }
 
 export interface StudentUpdateDataInput {
-  firstName?: Maybe<String>;
-  lastName?: Maybe<String>;
+  name?: Maybe<String>;
   schoolClass?: Maybe<SchoolClassUpdateOneWithoutStudentsInput>;
   marker?: Maybe<MarkerUpdateOneInput>;
 }
@@ -1592,15 +1557,13 @@ export interface SchoolSubjectUpdateManyMutationInput {
 }
 
 export interface StudentUpdateInput {
-  firstName?: Maybe<String>;
-  lastName?: Maybe<String>;
+  name?: Maybe<String>;
   schoolClass?: Maybe<SchoolClassUpdateOneWithoutStudentsInput>;
   marker?: Maybe<MarkerUpdateOneInput>;
 }
 
 export interface StudentUpdateManyMutationInput {
-  firstName?: Maybe<String>;
-  lastName?: Maybe<String>;
+  name?: Maybe<String>;
 }
 
 export interface UserCreateInput {
@@ -2001,14 +1964,12 @@ export interface SchoolClassNullablePromise
 
 export interface Student {
   id: ID_Output;
-  firstName: String;
-  lastName: String;
+  name: String;
 }
 
 export interface StudentPromise extends Promise<Student>, Fragmentable {
   id: () => Promise<ID_Output>;
-  firstName: () => Promise<String>;
-  lastName: () => Promise<String>;
+  name: () => Promise<String>;
   schoolClass: <T = SchoolClassPromise>() => T;
   marker: <T = MarkerPromise>() => T;
 }
@@ -2017,8 +1978,7 @@ export interface StudentSubscription
   extends Promise<AsyncIterator<Student>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  firstName: () => Promise<AsyncIterator<String>>;
-  lastName: () => Promise<AsyncIterator<String>>;
+  name: () => Promise<AsyncIterator<String>>;
   schoolClass: <T = SchoolClassSubscription>() => T;
   marker: <T = MarkerSubscription>() => T;
 }
@@ -2027,8 +1987,7 @@ export interface StudentNullablePromise
   extends Promise<Student | null>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  firstName: () => Promise<String>;
-  lastName: () => Promise<String>;
+  name: () => Promise<String>;
   schoolClass: <T = SchoolClassPromise>() => T;
   marker: <T = MarkerPromise>() => T;
 }
@@ -2972,24 +2931,21 @@ export interface StudentSubscriptionPayloadSubscription
 
 export interface StudentPreviousValues {
   id: ID_Output;
-  firstName: String;
-  lastName: String;
+  name: String;
 }
 
 export interface StudentPreviousValuesPromise
   extends Promise<StudentPreviousValues>,
     Fragmentable {
   id: () => Promise<ID_Output>;
-  firstName: () => Promise<String>;
-  lastName: () => Promise<String>;
+  name: () => Promise<String>;
 }
 
 export interface StudentPreviousValuesSubscription
   extends Promise<AsyncIterator<StudentPreviousValues>>,
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
-  firstName: () => Promise<AsyncIterator<String>>;
-  lastName: () => Promise<AsyncIterator<String>>;
+  name: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserSubscriptionPayload {

@@ -11,13 +11,12 @@ type SchoolClass {
   id: ID! @id
   name: String!
   teacher: User @relation(link: INLINE)
-  students: [Student!]!
+  students: [Student!]! @relation(onDelete: CASCADE)
 }
 
 type Student {
   id: ID! @id
-  firstName: String!
-  lastName: String!
+  name: String!
   schoolClass: SchoolClass @relation(link: INLINE)
   marker: Marker @relation(link: INLINE)
 }
