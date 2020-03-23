@@ -61,6 +61,7 @@ const createStudent = async (parent, args, context, info) => {
   const userId = getUserId(context)
   return context.prisma.createStudent({
     name: args.name,
+    markerId: args.markerId,
     schoolClass: {
       connect: { id: args.schoolClassId },
     },
@@ -71,6 +72,7 @@ const updateStudent = async (parent, args, context, info) => {
   return context.prisma.updateStudent({
     data: {
       name: args.name,
+      markerId: args.markerId
     },
     where: {
       id: args.studentId

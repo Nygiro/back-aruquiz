@@ -8,6 +8,7 @@ type Query {
   schoolSubjects: [SchoolSubject!]!
   schoolClass(schoolClassId: ID!): SchoolClass!,
   schoolClassesByCurrentUser(search: String = ""): [SchoolClass!]!
+  students(studentsId: [ID!]!): [Student]
 }
 
 type Mutation {
@@ -16,7 +17,7 @@ type Mutation {
   createStudent(name: String!, schoolClassId: ID!, markerId: String!): Student
   signup(email: String!, password: String!, userName: String!): AuthPayload
   login(email: String!, password: String!): AuthPayload,
-  updateStudent(name: String!, studentId: ID!): Student
+  updateStudent(name: String!, studentId: ID!, markerId: String!): Student
   deleteStudent(studentId: ID!): Student
   deleteSchoolClass(schoolClassId: ID!): SchoolClass
 }
