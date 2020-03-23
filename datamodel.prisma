@@ -18,7 +18,7 @@ type Student {
   id: ID! @id
   name: String!
   schoolClass: SchoolClass @relation(link: INLINE)
-  marker: Marker @relation(link: INLINE)
+  markerId: String!
 }
 
 type Marker {

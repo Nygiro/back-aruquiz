@@ -429,7 +429,9 @@ export type StudentOrderByInput =
   | "id_ASC"
   | "id_DESC"
   | "name_ASC"
-  | "name_DESC";
+  | "name_DESC"
+  | "markerId_ASC"
+  | "markerId_DESC";
 
 export type QuizOrderByInput = "id_ASC" | "id_DESC" | "name_ASC" | "name_DESC";
 
@@ -689,52 +691,23 @@ export interface StudentWhereInput {
   name_ends_with?: Maybe<String>;
   name_not_ends_with?: Maybe<String>;
   schoolClass?: Maybe<SchoolClassWhereInput>;
-  marker?: Maybe<MarkerWhereInput>;
+  markerId?: Maybe<String>;
+  markerId_not?: Maybe<String>;
+  markerId_in?: Maybe<String[] | String>;
+  markerId_not_in?: Maybe<String[] | String>;
+  markerId_lt?: Maybe<String>;
+  markerId_lte?: Maybe<String>;
+  markerId_gt?: Maybe<String>;
+  markerId_gte?: Maybe<String>;
+  markerId_contains?: Maybe<String>;
+  markerId_not_contains?: Maybe<String>;
+  markerId_starts_with?: Maybe<String>;
+  markerId_not_starts_with?: Maybe<String>;
+  markerId_ends_with?: Maybe<String>;
+  markerId_not_ends_with?: Maybe<String>;
   AND?: Maybe<StudentWhereInput[] | StudentWhereInput>;
   OR?: Maybe<StudentWhereInput[] | StudentWhereInput>;
   NOT?: Maybe<StudentWhereInput[] | StudentWhereInput>;
-}
-
-export interface MarkerWhereInput {
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  markerId?: Maybe<Int>;
-  markerId_not?: Maybe<Int>;
-  markerId_in?: Maybe<Int[] | Int>;
-  markerId_not_in?: Maybe<Int[] | Int>;
-  markerId_lt?: Maybe<Int>;
-  markerId_lte?: Maybe<Int>;
-  markerId_gt?: Maybe<Int>;
-  markerId_gte?: Maybe<Int>;
-  imageLink?: Maybe<String>;
-  imageLink_not?: Maybe<String>;
-  imageLink_in?: Maybe<String[] | String>;
-  imageLink_not_in?: Maybe<String[] | String>;
-  imageLink_lt?: Maybe<String>;
-  imageLink_lte?: Maybe<String>;
-  imageLink_gt?: Maybe<String>;
-  imageLink_gte?: Maybe<String>;
-  imageLink_contains?: Maybe<String>;
-  imageLink_not_contains?: Maybe<String>;
-  imageLink_starts_with?: Maybe<String>;
-  imageLink_not_starts_with?: Maybe<String>;
-  imageLink_ends_with?: Maybe<String>;
-  imageLink_not_ends_with?: Maybe<String>;
-  AND?: Maybe<MarkerWhereInput[] | MarkerWhereInput>;
-  OR?: Maybe<MarkerWhereInput[] | MarkerWhereInput>;
-  NOT?: Maybe<MarkerWhereInput[] | MarkerWhereInput>;
 }
 
 export interface AnswerWhereInput {
@@ -812,6 +785,48 @@ export interface QuestionWhereInput {
 export type MarkerWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
+
+export interface MarkerWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  markerId?: Maybe<Int>;
+  markerId_not?: Maybe<Int>;
+  markerId_in?: Maybe<Int[] | Int>;
+  markerId_not_in?: Maybe<Int[] | Int>;
+  markerId_lt?: Maybe<Int>;
+  markerId_lte?: Maybe<Int>;
+  markerId_gt?: Maybe<Int>;
+  markerId_gte?: Maybe<Int>;
+  imageLink?: Maybe<String>;
+  imageLink_not?: Maybe<String>;
+  imageLink_in?: Maybe<String[] | String>;
+  imageLink_not_in?: Maybe<String[] | String>;
+  imageLink_lt?: Maybe<String>;
+  imageLink_lte?: Maybe<String>;
+  imageLink_gt?: Maybe<String>;
+  imageLink_gte?: Maybe<String>;
+  imageLink_contains?: Maybe<String>;
+  imageLink_not_contains?: Maybe<String>;
+  imageLink_starts_with?: Maybe<String>;
+  imageLink_not_starts_with?: Maybe<String>;
+  imageLink_ends_with?: Maybe<String>;
+  imageLink_not_ends_with?: Maybe<String>;
+  AND?: Maybe<MarkerWhereInput[] | MarkerWhereInput>;
+  OR?: Maybe<MarkerWhereInput[] | MarkerWhereInput>;
+  NOT?: Maybe<MarkerWhereInput[] | MarkerWhereInput>;
+}
 
 export type QuestionWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
@@ -953,18 +968,7 @@ export interface StudentCreateManyWithoutSchoolClassInput {
 export interface StudentCreateWithoutSchoolClassInput {
   id?: Maybe<ID_Input>;
   name: String;
-  marker?: Maybe<MarkerCreateOneInput>;
-}
-
-export interface MarkerCreateOneInput {
-  create?: Maybe<MarkerCreateInput>;
-  connect?: Maybe<MarkerWhereUniqueInput>;
-}
-
-export interface MarkerCreateInput {
-  id?: Maybe<ID_Input>;
-  markerId?: Maybe<Int>;
-  imageLink?: Maybe<String>;
+  markerId: String;
 }
 
 export interface AnswerUpdateInput {
@@ -1105,26 +1109,7 @@ export interface StudentUpdateWithWhereUniqueWithoutSchoolClassInput {
 
 export interface StudentUpdateWithoutSchoolClassDataInput {
   name?: Maybe<String>;
-  marker?: Maybe<MarkerUpdateOneInput>;
-}
-
-export interface MarkerUpdateOneInput {
-  create?: Maybe<MarkerCreateInput>;
-  update?: Maybe<MarkerUpdateDataInput>;
-  upsert?: Maybe<MarkerUpsertNestedInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
-  connect?: Maybe<MarkerWhereUniqueInput>;
-}
-
-export interface MarkerUpdateDataInput {
-  markerId?: Maybe<Int>;
-  imageLink?: Maybe<String>;
-}
-
-export interface MarkerUpsertNestedInput {
-  update: MarkerUpdateDataInput;
-  create: MarkerCreateInput;
+  markerId?: Maybe<String>;
 }
 
 export interface StudentUpsertWithWhereUniqueWithoutSchoolClassInput {
@@ -1162,6 +1147,20 @@ export interface StudentScalarWhereInput {
   name_not_starts_with?: Maybe<String>;
   name_ends_with?: Maybe<String>;
   name_not_ends_with?: Maybe<String>;
+  markerId?: Maybe<String>;
+  markerId_not?: Maybe<String>;
+  markerId_in?: Maybe<String[] | String>;
+  markerId_not_in?: Maybe<String[] | String>;
+  markerId_lt?: Maybe<String>;
+  markerId_lte?: Maybe<String>;
+  markerId_gt?: Maybe<String>;
+  markerId_gte?: Maybe<String>;
+  markerId_contains?: Maybe<String>;
+  markerId_not_contains?: Maybe<String>;
+  markerId_starts_with?: Maybe<String>;
+  markerId_not_starts_with?: Maybe<String>;
+  markerId_ends_with?: Maybe<String>;
+  markerId_not_ends_with?: Maybe<String>;
   AND?: Maybe<StudentScalarWhereInput[] | StudentScalarWhereInput>;
   OR?: Maybe<StudentScalarWhereInput[] | StudentScalarWhereInput>;
   NOT?: Maybe<StudentScalarWhereInput[] | StudentScalarWhereInput>;
@@ -1174,6 +1173,7 @@ export interface StudentUpdateManyWithWhereNestedInput {
 
 export interface StudentUpdateManyDataInput {
   name?: Maybe<String>;
+  markerId?: Maybe<String>;
 }
 
 export interface SchoolClassUpsertWithWhereUniqueWithoutTeacherInput {
@@ -1243,6 +1243,12 @@ export interface QuestionUpsertNestedInput {
 export interface AnswerUpdateManyMutationInput {
   label?: Maybe<String>;
   isRight?: Maybe<Boolean>;
+}
+
+export interface MarkerCreateInput {
+  id?: Maybe<ID_Input>;
+  markerId?: Maybe<Int>;
+  imageLink?: Maybe<String>;
 }
 
 export interface MarkerUpdateInput {
@@ -1330,7 +1336,7 @@ export interface StudentCreateInput {
   id?: Maybe<ID_Input>;
   name: String;
   schoolClass?: Maybe<SchoolClassCreateOneWithoutStudentsInput>;
-  marker?: Maybe<MarkerCreateOneInput>;
+  markerId: String;
 }
 
 export interface SchoolClassCreateOneWithoutStudentsInput {
@@ -1491,7 +1497,7 @@ export interface StudentUpdateOneInput {
 export interface StudentUpdateDataInput {
   name?: Maybe<String>;
   schoolClass?: Maybe<SchoolClassUpdateOneWithoutStudentsInput>;
-  marker?: Maybe<MarkerUpdateOneInput>;
+  markerId?: Maybe<String>;
 }
 
 export interface SchoolClassUpdateOneWithoutStudentsInput {
@@ -1559,11 +1565,12 @@ export interface SchoolSubjectUpdateManyMutationInput {
 export interface StudentUpdateInput {
   name?: Maybe<String>;
   schoolClass?: Maybe<SchoolClassUpdateOneWithoutStudentsInput>;
-  marker?: Maybe<MarkerUpdateOneInput>;
+  markerId?: Maybe<String>;
 }
 
 export interface StudentUpdateManyMutationInput {
   name?: Maybe<String>;
+  markerId?: Maybe<String>;
 }
 
 export interface UserCreateInput {
@@ -1965,13 +1972,14 @@ export interface SchoolClassNullablePromise
 export interface Student {
   id: ID_Output;
   name: String;
+  markerId: String;
 }
 
 export interface StudentPromise extends Promise<Student>, Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   schoolClass: <T = SchoolClassPromise>() => T;
-  marker: <T = MarkerPromise>() => T;
+  markerId: () => Promise<String>;
 }
 
 export interface StudentSubscription
@@ -1980,7 +1988,7 @@ export interface StudentSubscription
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
   schoolClass: <T = SchoolClassSubscription>() => T;
-  marker: <T = MarkerSubscription>() => T;
+  markerId: () => Promise<AsyncIterator<String>>;
 }
 
 export interface StudentNullablePromise
@@ -1989,35 +1997,7 @@ export interface StudentNullablePromise
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
   schoolClass: <T = SchoolClassPromise>() => T;
-  marker: <T = MarkerPromise>() => T;
-}
-
-export interface Marker {
-  id: ID_Output;
-  markerId?: Int;
-  imageLink?: String;
-}
-
-export interface MarkerPromise extends Promise<Marker>, Fragmentable {
-  id: () => Promise<ID_Output>;
-  markerId: () => Promise<Int>;
-  imageLink: () => Promise<String>;
-}
-
-export interface MarkerSubscription
-  extends Promise<AsyncIterator<Marker>>,
-    Fragmentable {
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  markerId: () => Promise<AsyncIterator<Int>>;
-  imageLink: () => Promise<AsyncIterator<String>>;
-}
-
-export interface MarkerNullablePromise
-  extends Promise<Marker | null>,
-    Fragmentable {
-  id: () => Promise<ID_Output>;
-  markerId: () => Promise<Int>;
-  imageLink: () => Promise<String>;
+  markerId: () => Promise<String>;
 }
 
 export interface AnswerConnection {
@@ -2095,6 +2075,34 @@ export interface AggregateAnswerSubscription
   extends Promise<AsyncIterator<AggregateAnswer>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Marker {
+  id: ID_Output;
+  markerId?: Int;
+  imageLink?: String;
+}
+
+export interface MarkerPromise extends Promise<Marker>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  markerId: () => Promise<Int>;
+  imageLink: () => Promise<String>;
+}
+
+export interface MarkerSubscription
+  extends Promise<AsyncIterator<Marker>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  markerId: () => Promise<AsyncIterator<Int>>;
+  imageLink: () => Promise<AsyncIterator<String>>;
+}
+
+export interface MarkerNullablePromise
+  extends Promise<Marker | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  markerId: () => Promise<Int>;
+  imageLink: () => Promise<String>;
 }
 
 export interface MarkerConnection {
@@ -2932,6 +2940,7 @@ export interface StudentSubscriptionPayloadSubscription
 export interface StudentPreviousValues {
   id: ID_Output;
   name: String;
+  markerId: String;
 }
 
 export interface StudentPreviousValuesPromise
@@ -2939,6 +2948,7 @@ export interface StudentPreviousValuesPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  markerId: () => Promise<String>;
 }
 
 export interface StudentPreviousValuesSubscription
@@ -2946,6 +2956,7 @@ export interface StudentPreviousValuesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
+  markerId: () => Promise<AsyncIterator<String>>;
 }
 
 export interface UserSubscriptionPayload {

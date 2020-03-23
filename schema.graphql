@@ -13,7 +13,7 @@ type Query {
 type Mutation {
   createQuiz(name: String!, schoolSubjectId: ID!): Quiz
   createSchoolClass(name: String!): SchoolClass
-  createStudent(name: String!, schoolClassId: ID!): Student
+  createStudent(name: String!, schoolClassId: ID!, markerId: String!): Student
   signup(email: String!, password: String!, userName: String!): AuthPayload
   login(email: String!, password: String!): AuthPayload,
   updateStudent(name: String!, studentId: ID!): Student
@@ -46,7 +46,7 @@ type Student {
   id: ID!
   name: String!
   schoolClass: SchoolClass
-  marker: Marker
+  markerId: String!
 }
 
 type Marker {

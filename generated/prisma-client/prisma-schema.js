@@ -200,11 +200,6 @@ input MarkerCreateInput {
   imageLink: String
 }
 
-input MarkerCreateOneInput {
-  create: MarkerCreateInput
-  connect: MarkerWhereUniqueInput
-}
-
 type MarkerEdge {
   node: Marker!
   cursor: String!
@@ -243,11 +238,6 @@ input MarkerSubscriptionWhereInput {
   NOT: [MarkerSubscriptionWhereInput!]
 }
 
-input MarkerUpdateDataInput {
-  markerId: Int
-  imageLink: String
-}
-
 input MarkerUpdateInput {
   markerId: Int
   imageLink: String
@@ -256,20 +246,6 @@ input MarkerUpdateInput {
 input MarkerUpdateManyMutationInput {
   markerId: Int
   imageLink: String
-}
-
-input MarkerUpdateOneInput {
-  create: MarkerCreateInput
-  update: MarkerUpdateDataInput
-  upsert: MarkerUpsertNestedInput
-  delete: Boolean
-  disconnect: Boolean
-  connect: MarkerWhereUniqueInput
-}
-
-input MarkerUpsertNestedInput {
-  update: MarkerUpdateDataInput!
-  create: MarkerCreateInput!
 }
 
 input MarkerWhereInput {
@@ -1232,7 +1208,7 @@ type Student {
   id: ID!
   name: String!
   schoolClass: SchoolClass
-  marker: Marker
+  markerId: String!
 }
 
 type StudentConnection {
@@ -1245,7 +1221,7 @@ input StudentCreateInput {
   id: ID
   name: String!
   schoolClass: SchoolClassCreateOneWithoutStudentsInput
-  marker: MarkerCreateOneInput
+  markerId: String!
 }
 
 input StudentCreateManyWithoutSchoolClassInput {
@@ -1261,7 +1237,7 @@ input StudentCreateOneInput {
 input StudentCreateWithoutSchoolClassInput {
   id: ID
   name: String!
-  marker: MarkerCreateOneInput
+  markerId: String!
 }
 
 type StudentEdge {
@@ -1274,11 +1250,14 @@ enum StudentOrderByInput {
   id_DESC
   name_ASC
   name_DESC
+  markerId_ASC
+  markerId_DESC
 }
 
 type StudentPreviousValues {
   id: ID!
   name: String!
+  markerId: String!
 }
 
 input StudentScalarWhereInput {
@@ -1310,6 +1289,20 @@ input StudentScalarWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
+  markerId: String
+  markerId_not: String
+  markerId_in: [String!]
+  markerId_not_in: [String!]
+  markerId_lt: String
+  markerId_lte: String
+  markerId_gt: String
+  markerId_gte: String
+  markerId_contains: String
+  markerId_not_contains: String
+  markerId_starts_with: String
+  markerId_not_starts_with: String
+  markerId_ends_with: String
+  markerId_not_ends_with: String
   AND: [StudentScalarWhereInput!]
   OR: [StudentScalarWhereInput!]
   NOT: [StudentScalarWhereInput!]
@@ -1336,21 +1329,23 @@ input StudentSubscriptionWhereInput {
 input StudentUpdateDataInput {
   name: String
   schoolClass: SchoolClassUpdateOneWithoutStudentsInput
-  marker: MarkerUpdateOneInput
+  markerId: String
 }
 
 input StudentUpdateInput {
   name: String
   schoolClass: SchoolClassUpdateOneWithoutStudentsInput
-  marker: MarkerUpdateOneInput
+  markerId: String
 }
 
 input StudentUpdateManyDataInput {
   name: String
+  markerId: String
 }
 
 input StudentUpdateManyMutationInput {
   name: String
+  markerId: String
 }
 
 input StudentUpdateManyWithoutSchoolClassInput {
@@ -1381,7 +1376,7 @@ input StudentUpdateOneInput {
 
 input StudentUpdateWithoutSchoolClassDataInput {
   name: String
-  marker: MarkerUpdateOneInput
+  markerId: String
 }
 
 input StudentUpdateWithWhereUniqueWithoutSchoolClassInput {
@@ -1430,7 +1425,20 @@ input StudentWhereInput {
   name_ends_with: String
   name_not_ends_with: String
   schoolClass: SchoolClassWhereInput
-  marker: MarkerWhereInput
+  markerId: String
+  markerId_not: String
+  markerId_in: [String!]
+  markerId_not_in: [String!]
+  markerId_lt: String
+  markerId_lte: String
+  markerId_gt: String
+  markerId_gte: String
+  markerId_contains: String
+  markerId_not_contains: String
+  markerId_starts_with: String
+  markerId_not_starts_with: String
+  markerId_ends_with: String
+  markerId_not_ends_with: String
   AND: [StudentWhereInput!]
   OR: [StudentWhereInput!]
   NOT: [StudentWhereInput!]
