@@ -20,6 +20,9 @@ type Mutation {
   updateStudent(name: String!, studentId: ID!, markerId: String!): Student
   deleteStudent(studentId: ID!): Student
   deleteSchoolClass(schoolClassId: ID!): SchoolClass
+  upsertQuestion(label: String!, quizId: ID!, questionId: ID): Question
+  upsertAnswer(label: String!, isRight: Boolean, questionId: ID!, answerId: ID): Answer
+  updateAnswerIsRightField(answerId: ID!, isRight: Boolean): Answer
 }
 
 type AuthPayload {

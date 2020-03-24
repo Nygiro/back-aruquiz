@@ -52,7 +52,7 @@ const createSchoolClass = async (parent, args, context, info) => {
 
 const deleteSchoolClass = async (parent, args, context, info) => {
   return context.prisma.deleteSchoolClass({
-    id:  args.schoolClassId
+    id: args.schoolClassId
   })
 };
 
@@ -82,12 +82,59 @@ const updateStudent = async (parent, args, context, info) => {
 
 const deleteStudent = async (parent, args, context, info) => {
   return context.prisma.deleteStudent({
-    id:  args.studentId
+    id: args.studentId
   })
 };
 
+const upsertQuestion = async (parent, args, context, info) => {
+  const userId = getUserId(context)
+  return context.prisma.upsertQuestion({
+    where: {
+      id: args.questionId
+    },
+    update: {
+      label: args.label,
+    },
+    create: {
+      label: args.label,
+      quiz: {
+        connect: { id: args.quizId },
+      },
+    },
+  })
+}
 
+const upsertAnswer = async (parent, args, context, info) => {
+  const userId = getUserId(context)
+  return context.prisma.upsertAnswer({
+    where: {
+      id: args.answerId,
+    },
+    update: {
+      label: args.label,
+      isRight: args.isRight,
+    },
+    create: {
+      label: args.label,
+      isRight: args.isRight,
+      question: {
+        connect: { id: args.questionId },
+      },
+    },
+  })
+}
 
+const updateAnswerIsRightField = async (parent, args, context, info) => {
+  // const userId = getUserId(context)
+  return context.prisma.updateAnswer({
+    data: {
+      isRight: args.isRight,
+    },
+    where: {
+      id: args.answerId
+    }
+  })
+}
 
 module.exports = {
   signup,
@@ -98,4 +145,7 @@ module.exports = {
   createStudent,
   updateStudent,
   deleteStudent,
+  upsertQuestion,
+  upsertAnswer,
+  updateAnswerIsRightField
 }
