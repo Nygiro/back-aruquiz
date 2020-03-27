@@ -23,6 +23,9 @@ type Mutation {
   upsertQuestion(label: String!, quizId: ID!, questionId: ID): Question
   upsertAnswer(label: String!, isRight: Boolean, questionId: ID!, answerId: ID): Answer
   updateAnswerIsRightField(answerId: ID!, isRight: Boolean): Answer
+  deleteQuiz(quizId: ID!): Quiz
+  createReport(schoolClassId: ID!, studentId: ID!, quizId: ID!, questionId: ID!, answerId: ID!): Report
+  upsertReport(schoolClassId: ID!, studentId: ID!, quizId: ID!, questionId: ID!, answerId: ID!, reportId: ID): Report
 }
 
 type AuthPayload {
@@ -69,12 +72,14 @@ type Quiz {
   name: String!
   schoolSubject: SchoolSubject
   createdBy: User
+  questions: [Question]
 }
 
 type Question {
   id: ID!
   label: String!
   quiz: Quiz
+  answers: [Answer]
 }
 
 type Answer {

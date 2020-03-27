@@ -56,12 +56,23 @@ input AnswerCreateInput {
   id: ID
   label: String!
   isRight: Boolean!
-  question: QuestionCreateOneInput
+  question: QuestionCreateOneWithoutAnswersInput
+}
+
+input AnswerCreateManyWithoutQuestionInput {
+  create: [AnswerCreateWithoutQuestionInput!]
+  connect: [AnswerWhereUniqueInput!]
 }
 
 input AnswerCreateOneInput {
   create: AnswerCreateInput
   connect: AnswerWhereUniqueInput
+}
+
+input AnswerCreateWithoutQuestionInput {
+  id: ID
+  label: String!
+  isRight: Boolean!
 }
 
 type AnswerEdge {
@@ -82,6 +93,42 @@ type AnswerPreviousValues {
   id: ID!
   label: String!
   isRight: Boolean!
+}
+
+input AnswerScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  label: String
+  label_not: String
+  label_in: [String!]
+  label_not_in: [String!]
+  label_lt: String
+  label_lte: String
+  label_gt: String
+  label_gte: String
+  label_contains: String
+  label_not_contains: String
+  label_starts_with: String
+  label_not_starts_with: String
+  label_ends_with: String
+  label_not_ends_with: String
+  isRight: Boolean
+  isRight_not: Boolean
+  AND: [AnswerScalarWhereInput!]
+  OR: [AnswerScalarWhereInput!]
+  NOT: [AnswerScalarWhereInput!]
 }
 
 type AnswerSubscriptionPayload {
@@ -105,18 +152,40 @@ input AnswerSubscriptionWhereInput {
 input AnswerUpdateDataInput {
   label: String
   isRight: Boolean
-  question: QuestionUpdateOneInput
+  question: QuestionUpdateOneWithoutAnswersInput
 }
 
 input AnswerUpdateInput {
   label: String
   isRight: Boolean
-  question: QuestionUpdateOneInput
+  question: QuestionUpdateOneWithoutAnswersInput
+}
+
+input AnswerUpdateManyDataInput {
+  label: String
+  isRight: Boolean
 }
 
 input AnswerUpdateManyMutationInput {
   label: String
   isRight: Boolean
+}
+
+input AnswerUpdateManyWithoutQuestionInput {
+  create: [AnswerCreateWithoutQuestionInput!]
+  delete: [AnswerWhereUniqueInput!]
+  connect: [AnswerWhereUniqueInput!]
+  set: [AnswerWhereUniqueInput!]
+  disconnect: [AnswerWhereUniqueInput!]
+  update: [AnswerUpdateWithWhereUniqueWithoutQuestionInput!]
+  upsert: [AnswerUpsertWithWhereUniqueWithoutQuestionInput!]
+  deleteMany: [AnswerScalarWhereInput!]
+  updateMany: [AnswerUpdateManyWithWhereNestedInput!]
+}
+
+input AnswerUpdateManyWithWhereNestedInput {
+  where: AnswerScalarWhereInput!
+  data: AnswerUpdateManyDataInput!
 }
 
 input AnswerUpdateOneInput {
@@ -128,9 +197,25 @@ input AnswerUpdateOneInput {
   connect: AnswerWhereUniqueInput
 }
 
+input AnswerUpdateWithoutQuestionDataInput {
+  label: String
+  isRight: Boolean
+}
+
+input AnswerUpdateWithWhereUniqueWithoutQuestionInput {
+  where: AnswerWhereUniqueInput!
+  data: AnswerUpdateWithoutQuestionDataInput!
+}
+
 input AnswerUpsertNestedInput {
   update: AnswerUpdateDataInput!
   create: AnswerCreateInput!
+}
+
+input AnswerUpsertWithWhereUniqueWithoutQuestionInput {
+  where: AnswerWhereUniqueInput!
+  update: AnswerUpdateWithoutQuestionDataInput!
+  create: AnswerCreateWithoutQuestionInput!
 }
 
 input AnswerWhereInput {
@@ -402,6 +487,7 @@ type Question {
   id: ID!
   label: String!
   quiz: Quiz
+  answers(where: AnswerWhereInput, orderBy: AnswerOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Answer!]
 }
 
 type QuestionConnection {
@@ -413,12 +499,35 @@ type QuestionConnection {
 input QuestionCreateInput {
   id: ID
   label: String!
-  quiz: QuizCreateOneInput
+  quiz: QuizCreateOneWithoutQuestionsInput
+  answers: AnswerCreateManyWithoutQuestionInput
+}
+
+input QuestionCreateManyWithoutQuizInput {
+  create: [QuestionCreateWithoutQuizInput!]
+  connect: [QuestionWhereUniqueInput!]
 }
 
 input QuestionCreateOneInput {
   create: QuestionCreateInput
   connect: QuestionWhereUniqueInput
+}
+
+input QuestionCreateOneWithoutAnswersInput {
+  create: QuestionCreateWithoutAnswersInput
+  connect: QuestionWhereUniqueInput
+}
+
+input QuestionCreateWithoutAnswersInput {
+  id: ID
+  label: String!
+  quiz: QuizCreateOneWithoutQuestionsInput
+}
+
+input QuestionCreateWithoutQuizInput {
+  id: ID
+  label: String!
+  answers: AnswerCreateManyWithoutQuestionInput
 }
 
 type QuestionEdge {
@@ -436,6 +545,40 @@ enum QuestionOrderByInput {
 type QuestionPreviousValues {
   id: ID!
   label: String!
+}
+
+input QuestionScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  label: String
+  label_not: String
+  label_in: [String!]
+  label_not_in: [String!]
+  label_lt: String
+  label_lte: String
+  label_gt: String
+  label_gte: String
+  label_contains: String
+  label_not_contains: String
+  label_starts_with: String
+  label_not_starts_with: String
+  label_ends_with: String
+  label_not_ends_with: String
+  AND: [QuestionScalarWhereInput!]
+  OR: [QuestionScalarWhereInput!]
+  NOT: [QuestionScalarWhereInput!]
 }
 
 type QuestionSubscriptionPayload {
@@ -458,16 +601,39 @@ input QuestionSubscriptionWhereInput {
 
 input QuestionUpdateDataInput {
   label: String
-  quiz: QuizUpdateOneInput
+  quiz: QuizUpdateOneWithoutQuestionsInput
+  answers: AnswerUpdateManyWithoutQuestionInput
 }
 
 input QuestionUpdateInput {
   label: String
-  quiz: QuizUpdateOneInput
+  quiz: QuizUpdateOneWithoutQuestionsInput
+  answers: AnswerUpdateManyWithoutQuestionInput
+}
+
+input QuestionUpdateManyDataInput {
+  label: String
 }
 
 input QuestionUpdateManyMutationInput {
   label: String
+}
+
+input QuestionUpdateManyWithoutQuizInput {
+  create: [QuestionCreateWithoutQuizInput!]
+  delete: [QuestionWhereUniqueInput!]
+  connect: [QuestionWhereUniqueInput!]
+  set: [QuestionWhereUniqueInput!]
+  disconnect: [QuestionWhereUniqueInput!]
+  update: [QuestionUpdateWithWhereUniqueWithoutQuizInput!]
+  upsert: [QuestionUpsertWithWhereUniqueWithoutQuizInput!]
+  deleteMany: [QuestionScalarWhereInput!]
+  updateMany: [QuestionUpdateManyWithWhereNestedInput!]
+}
+
+input QuestionUpdateManyWithWhereNestedInput {
+  where: QuestionScalarWhereInput!
+  data: QuestionUpdateManyDataInput!
 }
 
 input QuestionUpdateOneInput {
@@ -479,9 +645,44 @@ input QuestionUpdateOneInput {
   connect: QuestionWhereUniqueInput
 }
 
+input QuestionUpdateOneWithoutAnswersInput {
+  create: QuestionCreateWithoutAnswersInput
+  update: QuestionUpdateWithoutAnswersDataInput
+  upsert: QuestionUpsertWithoutAnswersInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: QuestionWhereUniqueInput
+}
+
+input QuestionUpdateWithoutAnswersDataInput {
+  label: String
+  quiz: QuizUpdateOneWithoutQuestionsInput
+}
+
+input QuestionUpdateWithoutQuizDataInput {
+  label: String
+  answers: AnswerUpdateManyWithoutQuestionInput
+}
+
+input QuestionUpdateWithWhereUniqueWithoutQuizInput {
+  where: QuestionWhereUniqueInput!
+  data: QuestionUpdateWithoutQuizDataInput!
+}
+
 input QuestionUpsertNestedInput {
   update: QuestionUpdateDataInput!
   create: QuestionCreateInput!
+}
+
+input QuestionUpsertWithoutAnswersInput {
+  update: QuestionUpdateWithoutAnswersDataInput!
+  create: QuestionCreateWithoutAnswersInput!
+}
+
+input QuestionUpsertWithWhereUniqueWithoutQuizInput {
+  where: QuestionWhereUniqueInput!
+  update: QuestionUpdateWithoutQuizDataInput!
+  create: QuestionCreateWithoutQuizInput!
 }
 
 input QuestionWhereInput {
@@ -514,6 +715,9 @@ input QuestionWhereInput {
   label_ends_with: String
   label_not_ends_with: String
   quiz: QuizWhereInput
+  answers_every: AnswerWhereInput
+  answers_some: AnswerWhereInput
+  answers_none: AnswerWhereInput
   AND: [QuestionWhereInput!]
   OR: [QuestionWhereInput!]
   NOT: [QuestionWhereInput!]
@@ -528,6 +732,7 @@ type Quiz {
   name: String!
   schoolSubject: SchoolSubject
   createdBy: User
+  questions(where: QuestionWhereInput, orderBy: QuestionOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Question!]
 }
 
 type QuizConnection {
@@ -541,6 +746,7 @@ input QuizCreateInput {
   name: String!
   schoolSubject: SchoolSubjectCreateOneInput
   createdBy: UserCreateOneWithoutQuizzesInput
+  questions: QuestionCreateManyWithoutQuizInput
 }
 
 input QuizCreateManyWithoutCreatedByInput {
@@ -553,10 +759,23 @@ input QuizCreateOneInput {
   connect: QuizWhereUniqueInput
 }
 
+input QuizCreateOneWithoutQuestionsInput {
+  create: QuizCreateWithoutQuestionsInput
+  connect: QuizWhereUniqueInput
+}
+
 input QuizCreateWithoutCreatedByInput {
   id: ID
   name: String!
   schoolSubject: SchoolSubjectCreateOneInput
+  questions: QuestionCreateManyWithoutQuizInput
+}
+
+input QuizCreateWithoutQuestionsInput {
+  id: ID
+  name: String!
+  schoolSubject: SchoolSubjectCreateOneInput
+  createdBy: UserCreateOneWithoutQuizzesInput
 }
 
 type QuizEdge {
@@ -632,12 +851,14 @@ input QuizUpdateDataInput {
   name: String
   schoolSubject: SchoolSubjectUpdateOneInput
   createdBy: UserUpdateOneWithoutQuizzesInput
+  questions: QuestionUpdateManyWithoutQuizInput
 }
 
 input QuizUpdateInput {
   name: String
   schoolSubject: SchoolSubjectUpdateOneInput
   createdBy: UserUpdateOneWithoutQuizzesInput
+  questions: QuestionUpdateManyWithoutQuizInput
 }
 
 input QuizUpdateManyDataInput {
@@ -674,9 +895,25 @@ input QuizUpdateOneInput {
   connect: QuizWhereUniqueInput
 }
 
+input QuizUpdateOneWithoutQuestionsInput {
+  create: QuizCreateWithoutQuestionsInput
+  update: QuizUpdateWithoutQuestionsDataInput
+  upsert: QuizUpsertWithoutQuestionsInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: QuizWhereUniqueInput
+}
+
 input QuizUpdateWithoutCreatedByDataInput {
   name: String
   schoolSubject: SchoolSubjectUpdateOneInput
+  questions: QuestionUpdateManyWithoutQuizInput
+}
+
+input QuizUpdateWithoutQuestionsDataInput {
+  name: String
+  schoolSubject: SchoolSubjectUpdateOneInput
+  createdBy: UserUpdateOneWithoutQuizzesInput
 }
 
 input QuizUpdateWithWhereUniqueWithoutCreatedByInput {
@@ -687,6 +924,11 @@ input QuizUpdateWithWhereUniqueWithoutCreatedByInput {
 input QuizUpsertNestedInput {
   update: QuizUpdateDataInput!
   create: QuizCreateInput!
+}
+
+input QuizUpsertWithoutQuestionsInput {
+  update: QuizUpdateWithoutQuestionsDataInput!
+  create: QuizCreateWithoutQuestionsInput!
 }
 
 input QuizUpsertWithWhereUniqueWithoutCreatedByInput {
@@ -726,6 +968,9 @@ input QuizWhereInput {
   name_not_ends_with: String
   schoolSubject: SchoolSubjectWhereInput
   createdBy: UserWhereInput
+  questions_every: QuestionWhereInput
+  questions_some: QuestionWhereInput
+  questions_none: QuestionWhereInput
   AND: [QuizWhereInput!]
   OR: [QuizWhereInput!]
   NOT: [QuizWhereInput!]

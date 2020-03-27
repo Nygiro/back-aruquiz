@@ -37,12 +37,14 @@ type Quiz {
   name: String!
   schoolSubject: SchoolSubject @relation(link: INLINE)
   createdBy: User @relation(link: INLINE)
+  questions: [Question!]! @relation(onDelete: CASCADE)
 }
 
 type Question {
   id: ID! @id
   label: String!
-  quiz: Quiz @relation(link: INLINE)
+  quiz: Quiz @relation(link: INLINE, onDelete: CASCADE)
+  answers: [Answer!]! @relation(onDelete: CASCADE)
 }
 
 type Answer {

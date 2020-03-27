@@ -136,6 +136,64 @@ const updateAnswerIsRightField = async (parent, args, context, info) => {
   })
 }
 
+const deleteQuiz = async (parent, args, context, info) => {
+  return context.prisma.deleteQuiz({
+    id: args.quizId
+  })
+};
+
+const upsertReport = async (parent, args, context, info) => {
+  // const userId = getUserId(context)
+  return context.prisma.upsertAnswer({
+    where: {
+      id: args.reportId,
+    },
+    update: {
+      answer: {
+        connect: { id: args.answerId },
+      },
+    },
+    create: {
+      schoolClass: {
+        connect: { id: args.schoolClassId },
+      },
+      student: {
+        connect: { id: args.studentId }
+      },
+      quiz: {
+        connect: { id: args.quizId },
+      },
+      question: {
+        connect: { id: args.questionId },
+      },
+      answer: {
+        connect: { id: args.answerId },
+      },
+      createdAt: new Date()
+    },
+  })
+}
+
+const createReport = async (parent, args, context, info) => {
+  return context.prisma.createReport({
+    schoolClass: {
+      connect: { id: args.schoolClassId },
+    },
+    student: {
+      connect: { id: args.studentId }
+    },
+    quiz: {
+      connect: { id: args.quizId },
+    },
+    question: {
+      connect: { id: args.questionId },
+    },
+    answer: {
+      connect: { id: args.answerId },
+    },
+    createdAt: new Date()
+  })
+}
 module.exports = {
   signup,
   login,
@@ -147,5 +205,8 @@ module.exports = {
   deleteStudent,
   upsertQuestion,
   upsertAnswer,
-  updateAnswerIsRightField
+  updateAnswerIsRightField,
+  deleteQuiz,
+  upsertReport,
+  createReport
 }
