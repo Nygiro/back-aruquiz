@@ -18,6 +18,7 @@ type Mutation {
   signup(email: String!, password: String!, userName: String!): AuthPayload
   login(email: String!, password: String!): AuthPayload,
   updateStudent(name: String!, studentId: ID!, markerId: String!): Student
+  upsertStudent(name: String!, markerId: String!, studentId: ID): Student
   deleteStudent(studentId: ID!): Student
   deleteSchoolClass(schoolClassId: ID!): SchoolClass
   upsertQuestion(label: String!, quizId: ID!, questionId: ID): Question

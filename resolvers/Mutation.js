@@ -194,6 +194,26 @@ const createReport = async (parent, args, context, info) => {
     createdAt: new Date()
   })
 }
+
+const upsertStudent = async (parent, args, context, info) => {
+  const userId = getUserId(context)
+  return context.prisma.upsertStudent({
+    where: {
+      id: args.studentId
+    },
+    update: {
+      label: args.label,
+      markerId: args.marker
+    },
+    create: {
+      name: args.name,
+      markerId: args.markerId,
+      schoolClass: {
+        connect: { id: args.schoolClassId },
+      },
+    },
+  })
+}
 module.exports = {
   signup,
   login,
@@ -208,5 +228,6 @@ module.exports = {
   updateAnswerIsRightField,
   deleteQuiz,
   upsertReport,
-  createReport
+  createReport,
+  upsertStudent
 }
