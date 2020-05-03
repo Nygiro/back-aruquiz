@@ -84,6 +84,16 @@ const students = async (root, args, context) => {
     })
 }
 
+const reports = async (root, args, context) => {
+    return await context.prisma.reports({
+       where: {
+        student: {
+            id: args.studentId
+        }
+       }
+    })
+}
+
 module.exports = {
     users,
     user,
@@ -94,5 +104,6 @@ module.exports = {
     schoolSubjects,
     schoolClass,
     schoolClassesByCurrentUser,
-    students
+    students, 
+    reports
 }

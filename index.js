@@ -6,6 +6,8 @@ const Query = require('./resolvers/Query')
 const User = require('./resolvers/User')
 const Quiz = require('./resolvers/Quiz')
 const Question = require('./resolvers/Question')
+const Report = require('./resolvers/Report')
+
 
 const SchoolClass = require('./resolvers/SchoolClass')
 
@@ -15,7 +17,8 @@ const resolvers = {
   User,
   SchoolClass,
   Quiz,
-  Question
+  Question,
+  Report
 }
 
 const server = new GraphQLServer({

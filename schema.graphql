@@ -9,6 +9,7 @@ type Query {
   schoolClass(schoolClassId: ID!): SchoolClass!,
   schoolClassesByCurrentUser(search: String = ""): [SchoolClass!]!
   students(studentsId: [ID!]!): [Student]
+  reports(studentId: ID): [Report]
 }
 
 type Mutation {
