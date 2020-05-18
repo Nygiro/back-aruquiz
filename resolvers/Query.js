@@ -46,6 +46,7 @@ const quizzesBySchoolClass = async (root, args, context) => {
     }
 
     return await context.prisma.quizzes({
+		orderBy: 'id_DESC',
         where,
         skip: args.skip,
         first: args.first
@@ -72,6 +73,7 @@ const schoolClassesByCurrentUser = async (root, args, context) => {
     }
 
     return await context.prisma.schoolClasses({
+        orderBy: 'id_DESC',
         where,
         skip: args.skip,
         first: args.first
@@ -94,6 +96,18 @@ const reports = async (root, args, context) => {
     })
 }
 
+const reportsByQuiz = async (root, args, context) => {
+    return await context.prisma.reports({
+       where: {
+        student: {
+            id: args.studentId
+        },
+        quiz: {
+            id: args.quizId
+        }
+       }
+    })
+}
 module.exports = {
     users,
     user,
@@ -105,5 +119,6 @@ module.exports = {
     schoolClass,
     schoolClassesByCurrentUser,
     students, 
-    reports
+    reports,
+    reportsByQuiz
 }
