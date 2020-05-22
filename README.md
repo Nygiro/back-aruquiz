@@ -3,7 +3,7 @@
 Aruquiz est une PWA permettant de créer des quiz (QCM) avec 4 possibilités de réponses et de répondre à l'aide de forme imprimé sur un papier ou sur un ecran appelé `aruco` et qui seront scannés par une caméra (webcam ou smartphone par exemple).
 
 ## Librairies
-Le projet est basé sur le framework `reactJS` pour la partie front et la partie back utilise `prisma`
+Le projet est basé sur `react` pour la partie front et la partie back utilise `prisma`
 Le projet utilise aussi la librairie aruco qui est fait en c++ et qui permet de détecter des formes à l’aide de la réalité augmenté grâce à une caméra.
 
 ## Les formes
