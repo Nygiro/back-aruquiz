@@ -27,8 +27,8 @@ type Mutation {
   upsertAnswer(label: String!, isRight: Boolean, questionId: ID!, answerId: ID): Answer
   updateAnswerIsRightField(answerId: ID!, isRight: Boolean): Answer
   deleteQuiz(quizId: ID!): Quiz
-  createReport(schoolClassId: ID!, studentId: ID!, quizId: ID!, questionId: ID!, answerId: ID!): Report
-  upsertReport(schoolClassId: ID!, studentId: ID!, quizId: ID!, questionId: ID!, answerId: ID!, reportId: ID): Report
+  createReport(schoolClassId: ID!, studentId: ID!, quizId: ID!, questionId: ID!, answerId: ID!, sessionId: String!): Report
+  upsertReport(schoolClassId: ID!, studentId: ID!, quizId: ID!, questionId: ID!, answerId: ID!, reportId: ID, sessionId: String!): Report
 }
 
 type AuthPayload {

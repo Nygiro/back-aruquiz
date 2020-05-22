@@ -169,7 +169,8 @@ const upsertReport = async (parent, args, context, info) => {
       answer: {
         connect: { id: args.answerId },
       },
-      createdAt: new Date()
+      createdAt: new Date(),
+      sessionId: args.questionId
     },
   })
 }
@@ -191,7 +192,8 @@ const createReport = async (parent, args, context, info) => {
     answer: {
       connect: { id: args.answerId },
     },
-    createdAt: new Date()
+    createdAt: new Date(),
+    sessionId: args.sessionId
   })
 }
 
