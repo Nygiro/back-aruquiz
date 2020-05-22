@@ -62,4 +62,5 @@ type Report {
     question: Question @relation(link: INLINE)
     answer: Answer @relation(link: INLINE)
     createdAt: DateTime!
+    sessionId: String!
 }

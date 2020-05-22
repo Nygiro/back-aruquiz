@@ -100,4 +100,5 @@ type Report {
     question: Question
     answer: Answer
     createdAt: String!
+    sessionId: String!
 }

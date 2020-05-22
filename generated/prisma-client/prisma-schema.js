@@ -406,6 +406,7 @@ type Mutation {
   deleteManyQuizzes(where: QuizWhereInput): BatchPayload!
   createReport(data: ReportCreateInput!): Report!
   updateReport(data: ReportUpdateInput!, where: ReportWhereUniqueInput!): Report
+  updateManyReports(data: ReportUpdateManyMutationInput!, where: ReportWhereInput): BatchPayload!
   upsertReport(where: ReportWhereUniqueInput!, create: ReportCreateInput!, update: ReportUpdateInput!): Report!
   deleteReport(where: ReportWhereUniqueInput!): Report
   deleteManyReports(where: ReportWhereInput): BatchPayload!
@@ -988,6 +989,7 @@ type Report {
   question: Question
   answer: Answer
   createdAt: DateTime!
+  sessionId: String!
 }
 
 type ReportConnection {
@@ -1003,6 +1005,7 @@ input ReportCreateInput {
   quiz: QuizCreateOneInput
   question: QuestionCreateOneInput
   answer: AnswerCreateOneInput
+  sessionId: String!
 }
 
 type ReportEdge {
@@ -1015,11 +1018,14 @@ enum ReportOrderByInput {
   id_DESC
   createdAt_ASC
   createdAt_DESC
+  sessionId_ASC
+  sessionId_DESC
 }
 
 type ReportPreviousValues {
   id: ID!
   createdAt: DateTime!
+  sessionId: String!
 }
 
 type ReportSubscriptionPayload {
@@ -1046,6 +1052,11 @@ input ReportUpdateInput {
   quiz: QuizUpdateOneInput
   question: QuestionUpdateOneInput
   answer: AnswerUpdateOneInput
+  sessionId: String
+}
+
+input ReportUpdateManyMutationInput {
+  sessionId: String
 }
 
 input ReportWhereInput {
@@ -1076,6 +1087,20 @@ input ReportWhereInput {
   createdAt_lte: DateTime
   createdAt_gt: DateTime
   createdAt_gte: DateTime
+  sessionId: String
+  sessionId_not: String
+  sessionId_in: [String!]
+  sessionId_not_in: [String!]
+  sessionId_lt: String
+  sessionId_lte: String
+  sessionId_gt: String
+  sessionId_gte: String
+  sessionId_contains: String
+  sessionId_not_contains: String
+  sessionId_starts_with: String
+  sessionId_not_starts_with: String
+  sessionId_ends_with: String
+  sessionId_not_ends_with: String
   AND: [ReportWhereInput!]
   OR: [ReportWhereInput!]
   NOT: [ReportWhereInput!]

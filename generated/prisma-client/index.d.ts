@@ -296,6 +296,10 @@ export interface Prisma {
     data: ReportUpdateInput;
     where: ReportWhereUniqueInput;
   }) => ReportPromise;
+  updateManyReports: (args: {
+    data: ReportUpdateManyMutationInput;
+    where?: ReportWhereInput;
+  }) => BatchPayloadPromise;
   upsertReport: (args: {
     where: ReportWhereUniqueInput;
     create: ReportCreateInput;
@@ -461,7 +465,9 @@ export type ReportOrderByInput =
   | "id_ASC"
   | "id_DESC"
   | "createdAt_ASC"
-  | "createdAt_DESC";
+  | "createdAt_DESC"
+  | "sessionId_ASC"
+  | "sessionId_DESC";
 
 export type SchoolSubjectOrderByInput =
   | "id_ASC"
@@ -874,6 +880,20 @@ export interface ReportWhereInput {
   createdAt_lte?: Maybe<DateTimeInput>;
   createdAt_gt?: Maybe<DateTimeInput>;
   createdAt_gte?: Maybe<DateTimeInput>;
+  sessionId?: Maybe<String>;
+  sessionId_not?: Maybe<String>;
+  sessionId_in?: Maybe<String[] | String>;
+  sessionId_not_in?: Maybe<String[] | String>;
+  sessionId_lt?: Maybe<String>;
+  sessionId_lte?: Maybe<String>;
+  sessionId_gt?: Maybe<String>;
+  sessionId_gte?: Maybe<String>;
+  sessionId_contains?: Maybe<String>;
+  sessionId_not_contains?: Maybe<String>;
+  sessionId_starts_with?: Maybe<String>;
+  sessionId_not_starts_with?: Maybe<String>;
+  sessionId_ends_with?: Maybe<String>;
+  sessionId_not_ends_with?: Maybe<String>;
   AND?: Maybe<ReportWhereInput[] | ReportWhereInput>;
   OR?: Maybe<ReportWhereInput[] | ReportWhereInput>;
   NOT?: Maybe<ReportWhereInput[] | ReportWhereInput>;
@@ -1503,6 +1523,7 @@ export interface ReportCreateInput {
   quiz?: Maybe<QuizCreateOneInput>;
   question?: Maybe<QuestionCreateOneInput>;
   answer?: Maybe<AnswerCreateOneInput>;
+  sessionId: String;
 }
 
 export interface SchoolClassCreateOneInput {
@@ -1588,6 +1609,7 @@ export interface ReportUpdateInput {
   quiz?: Maybe<QuizUpdateOneInput>;
   question?: Maybe<QuestionUpdateOneInput>;
   answer?: Maybe<AnswerUpdateOneInput>;
+  sessionId?: Maybe<String>;
 }
 
 export interface SchoolClassUpdateOneInput {
@@ -1811,6 +1833,10 @@ export interface AnswerUpdateDataInput {
 export interface AnswerUpsertNestedInput {
   update: AnswerUpdateDataInput;
   create: AnswerCreateInput;
+}
+
+export interface ReportUpdateManyMutationInput {
+  sessionId?: Maybe<String>;
 }
 
 export interface SchoolClassUpdateInput {
@@ -2595,6 +2621,7 @@ export interface AggregateQuizSubscription
 export interface Report {
   id: ID_Output;
   createdAt: DateTimeOutput;
+  sessionId: String;
 }
 
 export interface ReportPromise extends Promise<Report>, Fragmentable {
@@ -2605,6 +2632,7 @@ export interface ReportPromise extends Promise<Report>, Fragmentable {
   question: <T = QuestionPromise>() => T;
   answer: <T = AnswerPromise>() => T;
   createdAt: () => Promise<DateTimeOutput>;
+  sessionId: () => Promise<String>;
 }
 
 export interface ReportSubscription
@@ -2617,6 +2645,7 @@ export interface ReportSubscription
   question: <T = QuestionSubscription>() => T;
   answer: <T = AnswerSubscription>() => T;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  sessionId: () => Promise<AsyncIterator<String>>;
 }
 
 export interface ReportNullablePromise
@@ -2629,6 +2658,7 @@ export interface ReportNullablePromise
   question: <T = QuestionPromise>() => T;
   answer: <T = AnswerPromise>() => T;
   createdAt: () => Promise<DateTimeOutput>;
+  sessionId: () => Promise<String>;
 }
 
 export interface ReportConnection {
@@ -3131,6 +3161,7 @@ export interface ReportSubscriptionPayloadSubscription
 export interface ReportPreviousValues {
   id: ID_Output;
   createdAt: DateTimeOutput;
+  sessionId: String;
 }
 
 export interface ReportPreviousValuesPromise
@@ -3138,6 +3169,7 @@ export interface ReportPreviousValuesPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   createdAt: () => Promise<DateTimeOutput>;
+  sessionId: () => Promise<String>;
 }
 
 export interface ReportPreviousValuesSubscription
@@ -3145,6 +3177,7 @@ export interface ReportPreviousValuesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  sessionId: () => Promise<AsyncIterator<String>>;
 }
 
 export interface SchoolClassSubscriptionPayload {
